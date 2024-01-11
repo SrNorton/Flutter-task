@@ -1,63 +1,86 @@
 import 'package:circular_progress_stack/circular_progress_stack.dart';
 import 'package:flutter/material.dart';
+import 'package:task_app/components/cardCircleProgress.dart';
+import 'package:task_app/components/tileTasks.dart';
 import 'package:task_app/constants/constants.dart';
+import 'package:task_app/models/circleTask.dart';
+import 'package:task_app/models/tile.dart';
 
 class DashPage extends StatefulWidget {
-  const DashPage({super.key});
+  DashPage({this.tile});
+  Tile? tile;
 
   @override
   State<DashPage> createState() => _DashPageState();
 }
 
 class _DashPageState extends State<DashPage> {
+ 
   @override
+  
   Widget build(BuildContext context) {
+   
     return Scaffold(
+       
       backgroundColor: Kbackground,
       appBar: AppBar(
+        title: Text(
+          "Dailytasks",
+          style:TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w800,
+                      fontFamily: "TitilliumWeb",
+                    ),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       body: Column(
+        
         children: [
-          Container(
-            height: 500,
-            width: MediaQuery.of(context).size.width,
-            child: GridView.count(crossAxisCount: 2,
-            children: List.generate(4, (index) {
-              return Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  height: 200,
-                  width: 80,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Kcontrast,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 25, right: 25, bottom: 50),
-                    child:  SingleAnimatedStackCircularProgressBar(
-        size: 100,
-        progressStrokeWidth: 15,
-        backStrokeWidth: 15,
-        startAngle: 0,
-        backColor: Color(0xffD7DEE7),
-        barColor: Kgreenprogress,
-        barValue: 70,
-        textStyle: TextStyle(
-          color: Colors.white
-        ),
-      ),
-                  ),
+          Column(
+            children: [
+              Container(
+                
+                height: 450,
+                width: MediaQuery.of(context).size.width,
+                child: GridView.count(crossAxisCount: 2,
+                children: List.generate(circleDescription.length, (index) {
+                 
+                 
+                    
+
+                  
+                  return Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: CardCircleProgress(color: circleDescription[index].color, progress: circleDescription[index].progress, type: circleDescription[index].type,),
+                  );
+                })
+              
+                
                 ),
-              );
-            })
-          
-            
+              ),
+              
+            ],
+          ),
+          Expanded(
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              color: Kbackground,
+              child: ListView.builder(
+                itemCount: tasksTotile.length,
+                itemBuilder: (context, index){
+                  return TileTask(
+                    image: tasksTotile[index].image,
+                    description: tasksTotile[index].descriptionTask,
+                  );
+                })
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
+

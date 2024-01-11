@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_app/components/cardTasks.dart';
 import 'package:task_app/constants/constants.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
+import 'package:task_app/models/cardModel.dart';
 
 
 
@@ -78,12 +79,12 @@ class HomePage extends StatelessWidget {
                             fontFamily: "TitilliumWeb",
                           ),
               ),
-              Container(
-                child: Image.asset("assets/images/pie.png",
-                height: 100,
-                width: 200,
-                ),
-              ),
+              // Container(
+              //   child: Image.asset("assets/images/pie.png",
+              //   height: 100,
+              //   width: 200,
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -161,15 +162,15 @@ class HomePage extends StatelessWidget {
 
     //CARD TAREFAS WIDGET
 
-    SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Column(
-        children: [
-          CardTask(),
-          
-        ],
+    Expanded(
+      child: Container(
+        child: ListView.builder(
+          itemCount: cardlist.length,
+          itemBuilder: (context, index) {
+          return CardTask(title: cardlist[index].title, progress: cardlist[index].progress);
+        }),
       ),
-    ),
+    )
 
 
 
