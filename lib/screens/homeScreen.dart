@@ -1,7 +1,9 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:task_app/components/barchart.dart';
 import 'package:task_app/components/cardTasks.dart';
 import 'package:task_app/constants/constants.dart';
-import 'package:easy_date_timeline/easy_date_timeline.dart';
+
 import 'package:task_app/models/cardModel.dart';
 
 
@@ -62,7 +64,7 @@ class HomePage extends StatelessWidget {
              ],
            ),
          ),
-        SizedBox(height: 30,),
+        SizedBox(height: 20,),
         Padding(
                      padding: const EdgeInsets.only(left: 25),
 
@@ -74,7 +76,7 @@ class HomePage extends StatelessWidget {
                 
               height: 1,
                             color: Colors.white,
-                            fontSize: 60,
+                            fontSize: 45,
                             fontWeight: FontWeight.w800,
                             fontFamily: "TitilliumWeb",
                           ),
@@ -88,81 +90,24 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-         SizedBox(height: 30,),
-        //Calendar
+         
+        //chart
 
         //Model 1
-        Padding(
-          padding: const EdgeInsets.only(left: 28, right: 28),
-          child: Container(
-           
-            transform: Matrix4.rotationX(1.0),
-            
-            child: EasyDateTimeLine(
-                initialDate: DateTime.now(),
-                onDateChange: (selectedDate) {
-            //`selectedDate` the new date selected.
-                },
-                headerProps: const EasyHeaderProps(
-                  selectedDateStyle: TextStyle(
-                    color: Colors.white,
-                  ),
-                  monthStyle: TextStyle(
-                    color: Colors.white,
-                  ),
-            monthPickerType: MonthPickerType.switcher,
-            selectedDateFormat: SelectedDateFormat.fullDateDMY,
-                ),
-                dayProps: EasyDayProps(
-                  todayStyle: DayStyle(
-                    dayNumStyle: TextStyle(
-                color: Colors.white
-              ),
-                  ),
-            dayStructure: DayStructure.dayStrDayNum,
-            inactiveDayStyle: DayStyle(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Color.fromARGB(255, 64, 85, 95),
-              ),
-              dayStrStyle: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),
-              dayNumStyle: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),
-              
-            ),
-            activeDayStyle: DayStyle(
-              
-              decoration: BoxDecoration(
-                
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    // Color(0xff3371FF),
-                    // Color(0xff8426D6),
-                    Color.fromRGBO(42, 247, 127, 0.612),
-                    Color.fromRGBO(4, 197, 245, 0.612),
-                    
-                  ],
-                ),
-              ),
-            ),
-                ),
-              ),
-          ),
-        ),
+        SizedBox(
+          height: 300,
+          width: MediaQuery.of(context).size.width,
+          child: BarChartSample1()),
+
+        
+        
     // SizedBox(height: 10,),
 
 
     //CARD TAREFAS WIDGET
 
     Expanded(
+      
       child: Container(
         child: ListView.builder(
           itemCount: cardlist.length,

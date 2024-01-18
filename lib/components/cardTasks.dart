@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:progresso/progresso.dart';
 import 'package:task_app/constants/constants.dart';
 
-class CardTask extends StatelessWidget {
+class CardTask extends StatefulWidget {
   String title;
   double progress;
   
@@ -10,6 +10,11 @@ class CardTask extends StatelessWidget {
     required this.title, required this.progress
   });
 
+  @override
+  State<CardTask> createState() => _CardTaskState();
+}
+
+class _CardTaskState extends State<CardTask> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,7 +33,7 @@ class CardTask extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15, right: 15, top: 12),
               child: Row(
                 children: [
-                  Text(title,
+                  Text(widget.title,
                    style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -56,7 +61,7 @@ class CardTask extends StatelessWidget {
                           fontFamily: "TitilliumWeb",
                         ),
                       ),
-                      Text(progress.toString()+"%",
+                      Text(widget.progress.toString()+"%",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,

@@ -48,7 +48,7 @@ class __PageManagerStateState extends State<PageManagerState> {
         activeIcons: const [
           Icon(Icons.home, color: Colors.white),
           
-          Icon(Icons.person, color: Colors.white),
+          Icon(Icons.list_alt, color: Colors.white),
 
           
         ],
@@ -59,7 +59,7 @@ class __PageManagerStateState extends State<PageManagerState> {
                 fontWeight: FontWeight.bold
               ),
           ),
-          Text("Settings",
+          Text("List",
           style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold

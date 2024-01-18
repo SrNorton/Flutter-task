@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class Tile {
   String? image;
   String? descriptionTask;
+  bool? status;
 
   Tile({required this.image, required this.descriptionTask});
 }

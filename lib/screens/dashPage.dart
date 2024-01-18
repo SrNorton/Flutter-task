@@ -1,6 +1,7 @@
 import 'package:circular_progress_stack/circular_progress_stack.dart';
 import 'package:flutter/material.dart';
 import 'package:task_app/components/cardCircleProgress.dart';
+import 'package:task_app/components/smallAddButom.dart';
 import 'package:task_app/components/tileTasks.dart';
 import 'package:task_app/constants/constants.dart';
 import 'package:task_app/models/circleTask.dart';
@@ -24,6 +25,7 @@ class _DashPageState extends State<DashPage> {
        
       backgroundColor: Kbackground,
       appBar: AppBar(
+        
         title: Text(
           "Dailytasks",
           style:TextStyle(
@@ -33,7 +35,13 @@ class _DashPageState extends State<DashPage> {
                       fontFamily: "TitilliumWeb",
                     ),
         ),
+        leading: AddButom(
+          
+
+  
+        ),
         backgroundColor: Colors.transparent,
+        
         elevation: 0,
       ),
       body: Column(
