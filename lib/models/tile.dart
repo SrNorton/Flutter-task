@@ -6,6 +6,9 @@ class Tile {
   bool? status;
 
   Tile({required this.image, required this.descriptionTask});
+
+
+  
 }
 
 List<Tile> tasksTotile = [

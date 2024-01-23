@@ -35,10 +35,13 @@ class _DashPageState extends State<DashPage> {
                       fontFamily: "TitilliumWeb",
                     ),
         ),
-        leading: AddButom(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: AddButom(
+            
           
-
-  
+            
+          ),
         ),
         backgroundColor: Colors.transparent,
         

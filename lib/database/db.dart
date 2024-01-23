@@ -1,44 +1,63 @@
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:task_app/models/tile.dart';
+
+
+
 
 
 class DB {
+ Database? _database;  
+ 
 
-  DB._();
-  static final DB instance = DB._();
+  // DB._();
+  // static final DB instance = DB._();
 
-  static Database? _database;
+  // static Database? _database;
 
-  get database async {
+   get database async {
     if(_database != null) return _database;
-
-  return await _initialDatabase();
+      return await _initializeDB('task.db');
+  
 
   
     
   }
   
-  _initialDatabase() async {
-    return await openDatabase(
-      join(await getDatabasesPath(), 'task.db'),
+ 
+  _initializeDB(String filepath) async {
+    final dbpath = await getDatabasesPath();
 
-      version: 1,
+    final path = join(dbpath, filepath);
 
-      onCreate: _onCreate,
-    );
+
+    return await openDatabase(path, version: 1,
+    
+    onCreate: _createDB
+    
+     );
+
+      
+    
   }
 
-  _onCreate(db, versao) async {
-    await db.execute(_dailytask);
+  Future _createDB(Database db, int version) async {
+    
     await db.execute(_studies);
+    
+    await db.execute(_dailytask);
     await db.execute(_payments);
     await db.execute(_commitment);
     await db.execute(_shopping);
 
+  
   }
 
+  
+
   String get _dailytask => '''
-  CREATE TABLE dailytask (
+  CREATE TABLE dailytask(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     type TEXT,
     description TEXT,
@@ -47,37 +66,62 @@ class DB {
 ''';
 
 String get _studies => '''
-CREATE TABLE studies (
+CREATE TABLE studies(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   matter TEXT,
-  subject TEXT,
+  subject TEXT
   );
 ''';
 
+
+
 String get _payments => '''
-CREATE TABLE payments (
+CREATE TABLE payments(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   description TEXT,
   date TEXT,
-  value TEXT,
+  value TEXT
 );
 ''';
 
 String get _commitment =>'''
 
-CREATE TABLE commitment (
+CREATE TABLE commitment(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   description TEXT,
   date TEXT,
-  time TEXT,
+  time TEXT
 );
 ''';
 
 String get _shopping =>'''
-  CREATE TABLE shopping (
+  CREATE TABLE shopping(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    description TEXT,
+    description TEXT
     
   );
 ''';
+
+
+// List  dailyTasklist =[];
+
+Future  setDailyTask({String? category, description, status}) async {
+    
+ 
+  final db = await database;
+
+    dynamic setDay = await 
+  db.insert('dailytask', {
+      'type': category,
+      'description': description,
+      'status': status,
+      
+    });
+
+    // dailyTasklist = setDay;
+    // print(dailyTasklist);
+
+    
+    
+  }
 }

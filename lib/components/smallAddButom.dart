@@ -1,5 +1,6 @@
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:task_app/components/textForm.dart';
 
 
 class AddButom extends StatelessWidget {
@@ -29,6 +30,9 @@ class AddButom extends StatelessWidget {
           child: ListView(
               controller: scrollController,
               shrinkWrap: true,
+              children: [
+                TextForm(),
+              ],
               
           ),
         ),
