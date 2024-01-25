@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 
 class Tile {
+  int? id;
   String? image;
   String? descriptionTask;
   bool? status;
 
-  Tile({required this.image, required this.descriptionTask});
+  Tile({this.id ,this.image, this.descriptionTask, this.status});
+
+  Tile.fromMap(Map<String, dynamic> map) {
+     
+      this.id = map['id'];
+      this.image = map['type'];
+      this.descriptionTask = map['description'];
+      this.status = map['status'];
+    
+  }
 
 
   

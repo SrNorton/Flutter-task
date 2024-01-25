@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:task_app/components/butomSave.dart';
 import 'package:task_app/components/cardChoice.dart';
 import 'package:task_app/database/db.dart';
+import 'package:task_app/database/dbRepository.dart';
 
 class TextForm extends StatefulWidget {
   TextForm({super.key});
@@ -38,6 +39,8 @@ class _TextFormState extends State<TextForm> {
   @override
   Widget build(BuildContext context) {
     
+ final data = context.read<DbRepository>();
+
 
   
 
@@ -150,13 +153,17 @@ class _TextFormState extends State<TextForm> {
 
 
                     if(_formKey.currentState!.validate()){
-       await DB().setDailyTask(
+
+                    
+       await data.setDailyTask(
         category: type,
         description: _textController.text,
         status: false.toString(),
         
         );
     }
+
+    await data.readallData();
     Navigator.pop(context);
                    
                     

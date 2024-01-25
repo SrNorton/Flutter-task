@@ -8,13 +8,13 @@ import 'package:task_app/models/tile.dart';
 
 
 class DB {
- Database? _database;  
+//  Database? _database;  
  
 
-  // DB._();
-  // static final DB instance = DB._();
+  DB._();
+  static final DB instance = DB._();
 
-  // static Database? _database;
+  static Database? _database;
 
    get database async {
     if(_database != null) return _database;
@@ -103,25 +103,36 @@ String get _shopping =>'''
 ''';
 
 
-// List  dailyTasklist =[];
 
-Future  setDailyTask({String? category, description, status}) async {
+// Future  setDailyTask({String? category, description, status}) async {
     
+
  
-  final db = await database;
+//   final db = await database;
 
-    dynamic setDay = await 
-  db.insert('dailytask', {
-      'type': category,
-      'description': description,
-      'status': status,
+    
+//   await db.insert('dailytask', {
+//       'type': category,
+//       'description': description,
+//       'status': status,
       
-    });
+//     });
 
-    // dailyTasklist = setDay;
-    // print(dailyTasklist);
+//     print('$description adicionado');
+    
+    
 
     
     
-  }
+//   }
+
+//   List wholeDataList = [];
+
+//   Future readallData() async {
+//     final db = await database;
+//     final alldata = await db.query('dailytask');
+//     wholeDataList = alldata;
+//     print(wholeDataList);
+
+//   }
 }
