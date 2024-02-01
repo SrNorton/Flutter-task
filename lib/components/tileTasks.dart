@@ -4,11 +4,10 @@ import 'package:task_app/models/tile.dart';
 
 class TileTask extends StatelessWidget {
 
-  String? image;
-  String? description;
-  bool? status = true;
- 
-  TileTask({this.image, this.description, this.status});
+  
+   String? image;
+   String? task;
+  TileTask({required this.image, required this.task});
   
   
   @override
@@ -31,7 +30,7 @@ class TileTask extends StatelessWidget {
             Expanded(
               child: 
               Container(
-                child: Text(description!,
+                child: Text(task!,
                 style: TextStyle(
                   fontWeight: FontWeight.bold
                 ),

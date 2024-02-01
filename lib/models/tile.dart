@@ -4,7 +4,7 @@ class Tile {
   int? id;
   String? image;
   String? descriptionTask;
-  bool? status;
+  String? status;
 
   Tile({this.id ,this.image, this.descriptionTask, this.status});
 
@@ -16,7 +16,11 @@ class Tile {
       this.status = map['status'];
     
   }
-
+ @override
+  String toString() {
+    // TODO: implement toString
+    return "minha cor $image e minha descrição é $descriptionTask";
+  }
 
   
 }

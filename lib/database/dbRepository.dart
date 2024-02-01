@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:task_app/database/db.dart';
+import 'package:task_app/models/tile.dart';
 
 class DbRepository extends ChangeNotifier {
   late Database db;
@@ -33,14 +34,34 @@ class DbRepository extends ChangeNotifier {
     
   }
 
-  List wholeDataList = [];
+  List listTileBuilder = [];
+
+  // void setDatalist () {
+  //   listTileBuilder.add(_wholeDataList.map((e) => Tile.fromMap(e)).toList());
+    
+  // }
+
+  // List<Map<String, dynamic>> _wholeDataList = [];
+
+
+
 
   Future readallData() async {
     final db = await DB.instance.database;
     final alldata = await db.query('dailytask');
-    wholeDataList = alldata;
+    listTileBuilder = alldata;
+    
     notifyListeners();
-    print(wholeDataList);
+    print(alldata);
+    print(listTileBuilder);
+    return;
+
+  }
+
+  Future deleteData() async {
+    final db = await DB.instance.database;
+    final clear = await db.delete('dailytask');
+    notifyListeners();
 
   }
 

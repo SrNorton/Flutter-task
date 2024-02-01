@@ -161,7 +161,8 @@ class _TextFormState extends State<TextForm> {
         status: false.toString(),
         
         );
-    }
+    } else {return null;}
+    // await data.deleteData();
 
     await data.readallData();
     Navigator.pop(context);

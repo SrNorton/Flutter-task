@@ -45,7 +45,7 @@ class BarChartSample1State extends State<BarChartSample1> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 const Text(
-                  'Mingguan',
+                  'progress',
                   style: TextStyle(
                     color: Colors.green,
                     fontSize: 24,
@@ -56,7 +56,7 @@ class BarChartSample1State extends State<BarChartSample1> {
                   height: 4,
                 ),
                 Text(
-                  'Grafik konsumsi kalori',
+                  'calorie consumption',
                   style: TextStyle(
                     color: Colors.green[600],
                     fontSize: 18,

@@ -1,7 +1,7 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:task_app/constants/constants.dart';
-import 'package:task_app/screens/dashPage.dart';
+import 'package:task_app/screens/calendar.dart';
 import 'package:task_app/screens/homeScreen.dart';
 
 class PageManagerState extends StatefulWidget {
@@ -37,7 +37,7 @@ class __PageManagerStateState extends State<PageManagerState> {
         controller: pc,
         children: [
           HomePage(),
-          DashPage(),
+          Calendar(),
         ],
         onPageChanged: setPage,
       ),
@@ -48,7 +48,7 @@ class __PageManagerStateState extends State<PageManagerState> {
         activeIcons: const [
           Icon(Icons.home, color: Colors.white),
           
-          Icon(Icons.list_alt, color: Colors.white),
+          Icon(Icons.calendar_month_outlined, color: Colors.white),
 
           
         ],
@@ -59,7 +59,7 @@ class __PageManagerStateState extends State<PageManagerState> {
                 fontWeight: FontWeight.bold
               ),
           ),
-          Text("List",
+          Text("Calendar",
           style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold

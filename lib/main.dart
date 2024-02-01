@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:task_app/database/db.dart';
 import 'package:task_app/database/dbRepository.dart';
 
 
@@ -16,7 +15,10 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => DbRepository())
       ],
-      child: const MyApp()));
+      
+      child: const MyApp()
+      
+      ));
 }
 
 class MyApp extends StatelessWidget {
