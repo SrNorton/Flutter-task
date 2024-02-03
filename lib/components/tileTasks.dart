@@ -7,7 +7,9 @@ class TileTask extends StatelessWidget {
   
    String? image;
    String? task;
-  TileTask({required this.image, required this.task});
+   int? id;
+   String? tilebool;
+  TileTask({required this.image, required this.task, this.id, this.tilebool});
   
   
   @override
@@ -36,7 +38,7 @@ class TileTask extends StatelessWidget {
                 ),
                 ),
               ),),
-              StatusTask(),
+              StatusTask(idtask: id, bool: tilebool!,),
 
           ],),
       ),

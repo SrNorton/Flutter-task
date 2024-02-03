@@ -11,9 +11,9 @@ import 'package:task_app/models/tile.dart';
 
 class DashPage extends StatefulWidget {
   
-  DashPage({this.function});
+  DashPage();
   // Tile? tile;
-  VoidCallback? function;
+  
   
 
   @override
@@ -127,6 +127,8 @@ color: Colors.white
                     itemBuilder: (BuildContext ctx, int index){
                       return TileTask(image: dbrepository.listTileBuilder[index]['type'],
                       task: dbrepository.listTileBuilder[index]['description'],
+                      id: dbrepository.listTileBuilder[index]['id'],
+                      tilebool: dbrepository.listTileBuilder[index]['status'],
                       );
                       
                     }

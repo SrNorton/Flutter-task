@@ -47,8 +47,8 @@ class BarChartSample1State extends State<BarChartSample1> {
                 const Text(
                   'progress',
                   style: TextStyle(
-                    color: Colors.green,
-                    fontSize: 24,
+                    color: Colors.white,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -58,8 +58,8 @@ class BarChartSample1State extends State<BarChartSample1> {
                 Text(
                   'calorie consumption',
                   style: TextStyle(
-                    color: Colors.green[600],
-                    fontSize: 18,
+                    color: Colors.white,
+                    fontSize: 13,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -40,9 +40,7 @@ class HomePage extends StatelessWidget {
                       onTap: (){
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (ctx) => DashPage(
-                            function: () async {
-                             await ctx.read<DbRepository>().readallData();
-                            },
+                           
                           )));
                       },
                       child: Container(

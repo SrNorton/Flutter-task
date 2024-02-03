@@ -65,5 +65,14 @@ class DbRepository extends ChangeNotifier {
 
   }
 
+  Future updateData({status, id})async {
+    final db = await DB.instance.database;
+    int dbupadateId = await db.rawUpdate(
+      'UPDATE dailytask SET status= ? WHERE id=?', [status, id]
+    );
+    notifyListeners();
+    print('id da task atualizada $id');
+  }
+
 
 }
