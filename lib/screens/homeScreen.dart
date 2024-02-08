@@ -121,6 +121,7 @@ class HomePage extends StatelessWidget {
       
       child: Container(
         child: ListView.builder(
+          scrollDirection: Axis.horizontal,
           itemCount: cardlist.length,
           itemBuilder: (context, index) {
           return CardTask(title: cardlist[index].title, progress: cardlist[index].progress);

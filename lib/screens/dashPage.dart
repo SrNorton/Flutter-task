@@ -34,7 +34,10 @@ class _DashPageState extends State<DashPage> {
  
 
   
-          context.read<DbRepository>().readallData();
+         context.read<DbRepository>().readallData();
+
+    
+        
   
 
    
@@ -96,7 +99,7 @@ color: Colors.white
                   
                   return Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: CardCircleProgress(color: circleDescription[index].color, progress: circleDescription[index].progress, type: circleDescription[index].type,),
+                    child: CardCircleProgress(color: circleDescription[index].color, progress: index, type: circleDescription[index].type,),
                   );
                 })
               

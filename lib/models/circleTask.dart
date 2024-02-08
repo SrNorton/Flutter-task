@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:task_app/database/dbRepository.dart';
 
 class CircleTask {
   Color color;
-  double progress;
+  
   String type;
 
-  CircleTask({required this.color, required this.progress, required this.type});
-  
+  CircleTask({required this.color,  required this.type});
+
+ 
 }
 
 List<CircleTask> circleDescription = [
-  CircleTask(color: Colors.blue, progress: 70, type: "Domésticas"),
-  CircleTask(color: Colors.yellow, progress: 50, type: "Crescimento Pessoal"),
-  CircleTask(color: Colors.purple, progress: 60, type: "Saúde"),
-  CircleTask(color: Colors.green, progress: 30, type: "Trabalho"),
+  CircleTask(color: Colors.blue,  type: "Domésticas"),
+  CircleTask(color: Colors.yellow,  type: "Crescimento Pessoal"),
+  CircleTask(color: Colors.purple,  type: "Saúde"),
+  CircleTask(color: Colors.green,   type: "Trabalho"),
 ];

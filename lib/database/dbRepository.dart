@@ -8,7 +8,7 @@ class DbRepository extends ChangeNotifier {
   late Database db;
  
  
- 
+
  
   Future  setDailyTask({String? category, description, status}) async {
     
@@ -35,14 +35,29 @@ class DbRepository extends ChangeNotifier {
   }
 
   List listTileBuilder = [];
+   
+  
 
-  // void setDatalist () {
-  //   listTileBuilder.add(_wholeDataList.map((e) => Tile.fromMap(e)).toList());
-    
+  
+
+  
+  
+  
+  // Future filterData(List<dynamic> list) async {
+  //      var filtroAzul = await list.where((e) => e['type'] == 'assets/images/ellipseblue.png' && e['status'] == 'false').toList();
+  //   // var listYellowDone = list.where((e) => e['type'] == 'assets/images/ellipsyellow.png' && ['status'] == 'true').toList();
+  //   // var listYellowInProgress = list.where((e) => e['type'] == 'assets/images/ellipsyellow.png' && ['status'] == 'false').toList();
+  //   // var listPerppleInProgress = list.where((e) => e['type'] == 'assets/images/ellipsperpple.png' && ['status'] == 'false').toList();
+  //   // var listPerppleInDone = list.where((e) => e['type'] == 'assets/images/ellipsperpple.png' && ['status'] == 'true').toList();
+  //   // var listGreenDone = list.where((e) => e['type'] == 'assets/images/ellipsgreen.png' && ['status'] == 'true').toList();
+  //   // var listGreenInProgress = list.where((e) => e['type'] == 'assets/images/ellipsgreen.png' && ['status'] == 'false').toList();
+  //   notifyListeners();
+  //   print('lista azul filtrada $filtroAzul');
+  //   return;
   // }
+  
 
-  // List<Map<String, dynamic>> _wholeDataList = [];
-
+  
 
 
 
@@ -51,12 +66,17 @@ class DbRepository extends ChangeNotifier {
     final alldata = await db.query('dailytask');
     listTileBuilder = alldata;
     
+    
     notifyListeners();
     print(alldata);
     print(listTileBuilder);
+    
+    
     return;
 
   }
+
+  
 
   Future deleteData() async {
     final db = await DB.instance.database;
