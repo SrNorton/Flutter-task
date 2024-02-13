@@ -90,7 +90,8 @@ CREATE TABLE commitment(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   description TEXT,
   date TEXT,
-  time TEXT
+  hours TEXT,
+  minutes TEXT
 );
 ''';
 

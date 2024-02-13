@@ -81,14 +81,14 @@ class __PageManagerStateState extends State<PageManagerState> {
           bottomRight: Radius.circular(24),
           bottomLeft: Radius.circular(24),
         ),
-        shadowColor: Colors.pink,
+        shadowColor: Color.fromARGB(255, 63, 6, 128),
          
         circleShadowColor: Colors.white,
         elevation: 10,
         gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: [ KbutonColor, Colors.pink ],
+            colors: [ KbutonColor, const Color.fromARGB(255, 30, 105, 233) ],
         ),
         circleGradient: LinearGradient(
             begin: Alignment.topRight,

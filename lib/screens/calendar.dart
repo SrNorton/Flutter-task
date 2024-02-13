@@ -1,13 +1,27 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:task_app/constants/constants.dart';
+import 'package:task_app/models/meeting.dart';
 
-class Calendar extends StatelessWidget {
+class Calendar extends StatefulWidget {
   const Calendar({super.key});
+
+  @override
+  State<Calendar> createState() => _CalendarState();
+}
+
+class _CalendarState extends State<Calendar> {
+
+ void openTest(){
+    Dialog();
+  }
 
  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      
       
       appBar: AppBar(
         backgroundColor: Kbackground,
@@ -22,6 +36,17 @@ class Calendar extends StatelessWidget {
       ),
         body: SfCalendar(
           view: CalendarView.month,
+          allowedViews: <CalendarView>[
+            CalendarView.day,
+            CalendarView.month,
+            CalendarView.workWeek,
+            CalendarView.schedule,
+            CalendarView.timelineDay,
+            CalendarView.timelineWeek,
+            CalendarView.timelineWorkWeek,
+            CalendarView.timelineMonth
+          ],
+          
           dataSource: MeetingDataSource(_getDataSource()),
           monthViewSettings: 
           MonthViewSettings(
@@ -29,21 +54,95 @@ class Calendar extends StatelessWidget {
               showAgenda: true,
               
               ),
-        ));
+              onLongPress: newCommitment,
+              
+        ),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(right: 60),
+          child: FloatingActionButton(
+            
+            child: Icon(Icons.add),
+            backgroundColor: Colors.blue,
+            highlightElevation: 60,
+            onPressed: (){
+              showDialog(
+                
+                
+                context: context,
+              builder: (BuildContext context){
+                return 
+                AlertDialog(
+                  title: Text('Novo Compromisso',
+                  style: TextStyle(
+                    color: Colors.blue,
+                          fontFamily: "TitilliumWeb",
+
+                    
+                  ),
+                  ),
+                  content: TextFormField(
+                    decoration: InputDecoration(
+                      focusColor: Colors.green,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        
+                      )
+                    ),
+                    
+                  ),
+                  actions: <Widget> [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                         IconButton(onPressed: (){
+                      Navigator.pop(context);
+                    }, icon: Icon(Icons.undo_rounded,
+                    color: Colors.purple,
+                    )),
+                    
+                    IconButton(onPressed: (){}, icon: Icon(Icons.send_rounded),
+                    color: Colors.purple,
+                    ),
+                      ],
+                    ),
+                   
+                  ]
+                );
+              });
+            }),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+        
+        );
   }
 
+    void newCommitment(CalendarTouchDetails detail){
+    
+    openTest();
+    var valor = detail.date;
+    
+    print('esta é a data $valor');
+
+  }
+
+ 
 
   //metodo para o set do compromisso
   List<Meeting> _getDataSource() {
     final List<Meeting> meetings = <Meeting>[];
     final DateTime today = DateTime.now();
-    final DateTime startTime =
-    DateTime(today.year, today.month, today.day, 15, 30, 0);
+    final DateTime startTime = today;
+    
     final DateTime endTime = startTime.add(const Duration(hours: 2));
+    
     meetings.add(
-        Meeting('Conference', startTime, endTime, const Color(0xFF0F8644), false));
+       Meeting(eventName: 'Dormmir até tarde', year: 2024, month: 02, day: 12, hours: 12, minutes: 00, to: endTime, background: Colors.green, isAllDay: false),
+        
+        );
     return meetings;
   }
+
+  
 }
 
 class MeetingDataSource extends CalendarDataSource {
@@ -75,14 +174,8 @@ class MeetingDataSource extends CalendarDataSource {
   bool isAllDay(int index) {
     return appointments![index].isAllDay;
   }
+
+  
 }
 
-class Meeting {
-  Meeting(this.eventName, this.from, this.to, this.background, this.isAllDay);
 
-  String eventName;
-  DateTime from;
-  DateTime to;
-  Color background;
-  bool isAllDay;
-}

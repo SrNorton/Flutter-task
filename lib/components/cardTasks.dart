@@ -24,6 +24,9 @@ class _CardTaskState extends State<CardTask> {
         height: 200,
       
         decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.blue
+          ),
           borderRadius: BorderRadius.circular(30),
           color: Kcontrast
         ),

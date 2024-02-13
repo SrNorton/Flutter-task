@@ -34,6 +34,22 @@ class DbRepository extends ChangeNotifier {
     
   }
 
+  Future setCommitiment({description, date, hours, minutes}) async {
+    final db = await DB.instance.database;
+
+    await db.insert('commitment', {
+      'description' : description,
+      'date' : date,
+      'hours' : hours,
+      'minutes' : minutes,
+    });
+
+    notifyListeners();
+
+    print('$description adicionado aos compromissos');
+  }
+
+
   List listTileBuilder = [];
    
   
@@ -91,7 +107,7 @@ class DbRepository extends ChangeNotifier {
       'UPDATE dailytask SET status= ? WHERE id=?', [status, id]
     );
     notifyListeners();
-    print('id da task atualizada $id');
+    print('id da task atualizada $dbupadateId');
   }
 
 
