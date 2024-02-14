@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_app/database/dbRepository.dart';
+import 'package:task_app/manager/timeManager.dart';
 
 
 import 'package:task_app/screens/pageView.dart';
@@ -13,7 +14,8 @@ void main() {
     MultiProvider(
       
       providers: [
-        ChangeNotifierProvider(create: (_) => DbRepository())
+        ChangeNotifierProvider(create: (_) => DbRepository()),
+        ChangeNotifierProvider(create: (_) => TimeProvider()),
       ],
       
       child: const MyApp()

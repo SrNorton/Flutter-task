@@ -1,6 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:task_app/components/editHours.dart';
+import 'package:task_app/components/editMinutes.dart';
 import 'package:task_app/constants/constants.dart';
 import 'package:task_app/models/meeting.dart';
 
@@ -12,13 +17,23 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _textController = TextEditingController();
+  
+  
 
- void openTest(){
-    Dialog();
-  }
+
+  var valueMinutes;
+
+ var _seelectDate;
+
+ 
+ 
 
  @override
   Widget build(BuildContext context) {
+ 
+
 
     return Scaffold(
       
@@ -34,28 +49,31 @@ class _CalendarState extends State<Calendar> {
         )
         ),
       ),
-        body: SfCalendar(
-          view: CalendarView.month,
-          allowedViews: <CalendarView>[
-            CalendarView.day,
-            CalendarView.month,
-            CalendarView.workWeek,
-            CalendarView.schedule,
-            CalendarView.timelineDay,
-            CalendarView.timelineWeek,
-            CalendarView.timelineWorkWeek,
-            CalendarView.timelineMonth
-          ],
-          
-          dataSource: MeetingDataSource(_getDataSource()),
-          monthViewSettings: 
-          MonthViewSettings(
-              appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
-              showAgenda: true,
-              
-              ),
-              onLongPress: newCommitment,
-              
+        body: Form(
+          key: _formKey,
+          child: SfCalendar(
+            view: CalendarView.month,
+            allowedViews: <CalendarView>[
+              CalendarView.day,
+              CalendarView.month,
+              CalendarView.workWeek,
+              CalendarView.schedule,
+              CalendarView.timelineDay,
+              CalendarView.timelineWeek,
+              CalendarView.timelineWorkWeek,
+              CalendarView.timelineMonth
+            ],
+            
+            dataSource: MeetingDataSource(_getDataSource()),
+            monthViewSettings: 
+            MonthViewSettings(
+                appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+                showAgenda: true,
+                
+                ),
+                onLongPress: newCommitment,
+                
+          ),
         ),
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(right: 60),
@@ -67,9 +85,10 @@ class _CalendarState extends State<Calendar> {
             onPressed: (){
               showDialog(
                 
-                
+                barrierDismissible: false,
                 context: context,
               builder: (BuildContext context){
+                
                 return 
                 AlertDialog(
                   title: Text('Novo Compromisso',
@@ -91,6 +110,10 @@ class _CalendarState extends State<Calendar> {
                     
                   ),
                   actions: <Widget> [
+                    EditHours(),
+                    SizedBox(height: 15,),
+                    EditMinutes(),
+                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -118,10 +141,11 @@ class _CalendarState extends State<Calendar> {
 
     void newCommitment(CalendarTouchDetails detail){
     
-    openTest();
-    var valor = detail.date;
     
-    print('esta é a data $valor');
+    _seelectDate = detail.date;
+    
+    
+    print('esta é a data $_seelectDate');
 
   }
 
@@ -136,7 +160,7 @@ class _CalendarState extends State<Calendar> {
     final DateTime endTime = startTime.add(const Duration(hours: 2));
     
     meetings.add(
-       Meeting(eventName: 'Dormmir até tarde', year: 2024, month: 02, day: 12, hours: 12, minutes: 00, to: endTime, background: Colors.green, isAllDay: false),
+       Meeting(eventName: 'Curtir o carnavoso', year: 2024, month: 02, day: 13, hours: 12, minutes: 00, to: endTime, background: Colors.green, isAllDay: false),
         
         );
     return meetings;
@@ -144,6 +168,10 @@ class _CalendarState extends State<Calendar> {
 
   
 }
+
+
+
+
 
 class MeetingDataSource extends CalendarDataSource {
   MeetingDataSource(List<Meeting> source){
