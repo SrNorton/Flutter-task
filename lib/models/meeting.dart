@@ -6,10 +6,11 @@ class Meeting {
   DateTime? from;
   DateTime? to;
   Color? background;
-  bool? isAllDay;
+  bool? isAllDay = false;
 
-  Meeting({this.eventName, int? year, int? month, int? day, int? hours, int? minutes, this.to, this.background, this.isAllDay}){
+  Meeting.fromData({this.eventName, int? year, int? month, int? day, int? hours, int? minutes,  this.background, this.isAllDay}){
       this.from = DateTime.utc(year!, month!, day!, hours!, minutes!);
+      this.to = from!.add(const Duration(hours: 2));
   }
 
 }

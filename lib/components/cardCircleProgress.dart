@@ -39,7 +39,7 @@ class CardCircleProgress extends StatelessWidget {
     
     var total = listBluedone.length + listBlueInProgress.length;
       
-      return  listBluedone.length * 100 / total;
+      return  total == 0 ? 0 :   listBluedone.length * 100 / total;
       
     } 
 
@@ -47,18 +47,18 @@ class CardCircleProgress extends StatelessWidget {
       var total = listYellowDone.length + listYellowInProgress.length;
       print('este é o valor total $total');
       
-      return listYellowDone.length * 100 / total;
+      return total == 0 ? 0 : listYellowDone.length * 100 / total;
     }
 
     double percentagePerpple (){
       var total = listPerppleInDone.length + listPerppleInProgress.length;
-      return listPerppleInDone.length * 100 / total;
+      return  total == 0 ? 0 :  listPerppleInDone.length * 100 / total;
     }
 
     double percentageGreen (){
       var total = listGreenDone.length + listGreenInProgress.length;
       
-      return listGreenDone.length * 100 / total;
+      return  total == 0 ? 0 :   listGreenDone.length * 100 / total;
     }
    
 

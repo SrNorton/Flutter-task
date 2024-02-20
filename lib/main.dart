@@ -14,8 +14,8 @@ void main() {
     MultiProvider(
       
       providers: [
-        ChangeNotifierProvider(create: (_) => DbRepository()),
-        ChangeNotifierProvider(create: (_) => TimeProvider()),
+        ChangeNotifierProvider(create: (_) => DbRepository(),lazy: false,),
+        ChangeNotifierProvider(create: (_) => TimeProvider(), lazy: false,),
       ],
       
       child: const MyApp()
@@ -29,6 +29,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    context.read<DbRepository>().readCommitment();
+    
+
+    
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

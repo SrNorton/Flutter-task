@@ -45,10 +45,10 @@ class DB {
   Future _createDB(Database db, int version) async {
     
     await db.execute(_studies);
-    
+    await db.execute(_commitment);
     await db.execute(_dailytask);
     await db.execute(_payments);
-    await db.execute(_commitment);
+   
     await db.execute(_shopping);
 
   
@@ -90,8 +90,12 @@ CREATE TABLE commitment(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   description TEXT,
   date TEXT,
-  hours TEXT,
-  minutes TEXT
+  hours INT,
+  minutes INT,
+  colorA INT,
+  colorR INT,
+  colorG INT,
+  colorB INT
 );
 ''';
 

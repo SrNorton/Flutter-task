@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:task_app/database/db.dart';
+import 'package:task_app/models/meeting.dart';
 import 'package:task_app/models/tile.dart';
 
 class DbRepository extends ChangeNotifier {
@@ -34,19 +35,58 @@ class DbRepository extends ChangeNotifier {
     
   }
 
-  Future setCommitiment({description, date, hours, minutes}) async {
+  List<Meeting> listMeetingDb = [];
+
+
+  //transformar compromissos calendário
+  List<Meeting> loadDates(List data){
+    
+
+     List<Meeting> listCalendarCommitment =  data.map((e) {
+        return Meeting.fromData(
+          eventName: e['description'],
+          year: DateTime.parse(e['date']).year,
+          month: DateTime.parse(e['date']).month,
+          day: DateTime.parse(e['date']).day,
+          hours: e['hours'],
+          minutes: e['minutes'],
+          background: Color.fromARGB(e['colorA'], e['colorR'], e['colorG'], e['colorB']),
+          isAllDay: false,
+        );
+      }).toList();
+      
+      listMeetingDb = listCalendarCommitment;
+    print(listMeetingDb[0].eventName);
+
+      notifyListeners();
+      return listCalendarCommitment;
+
+
+    }
+
+
+
+
+
+  //salvar compromissos calendário
+  Future setCommitiment({description, date, hours, minutes, colorA, colorR, colorG, colorB}) async {
+    
     final db = await DB.instance.database;
 
     await db.insert('commitment', {
-      'description' : description,
-      'date' : date,
-      'hours' : hours,
-      'minutes' : minutes,
+      'description': description,
+      'date': date,
+      'hours': hours,
+      'minutes': minutes,
+      'colorA': colorA,
+      'colorR': colorR,
+      'colorG': colorG,
+      'colorB': colorB,
     });
 
     notifyListeners();
 
-    print('$description adicionado aos compromissos');
+    print('$description adicionado aos compromissos, as $hours horas e $minutes, do dia $date');
   }
 
 
@@ -54,23 +94,23 @@ class DbRepository extends ChangeNotifier {
    
   
 
+  List listCommitment = [];
   
 
   
   
-  
-  // Future filterData(List<dynamic> list) async {
-  //      var filtroAzul = await list.where((e) => e['type'] == 'assets/images/ellipseblue.png' && e['status'] == 'false').toList();
-  //   // var listYellowDone = list.where((e) => e['type'] == 'assets/images/ellipsyellow.png' && ['status'] == 'true').toList();
-  //   // var listYellowInProgress = list.where((e) => e['type'] == 'assets/images/ellipsyellow.png' && ['status'] == 'false').toList();
-  //   // var listPerppleInProgress = list.where((e) => e['type'] == 'assets/images/ellipsperpple.png' && ['status'] == 'false').toList();
-  //   // var listPerppleInDone = list.where((e) => e['type'] == 'assets/images/ellipsperpple.png' && ['status'] == 'true').toList();
-  //   // var listGreenDone = list.where((e) => e['type'] == 'assets/images/ellipsgreen.png' && ['status'] == 'true').toList();
-  //   // var listGreenInProgress = list.where((e) => e['type'] == 'assets/images/ellipsgreen.png' && ['status'] == 'false').toList();
-  //   notifyListeners();
-  //   print('lista azul filtrada $filtroAzul');
-  //   return;
-  // }
+ 
+
+  Future readCommitment() async {
+    final db = await DB.instance.database;
+    final allCommitment = await db.query('commitment');
+    listCommitment = allCommitment;
+    await loadDates(listCommitment);
+    
+    notifyListeners();
+    print(listCommitment);
+    return;
+  }
   
 
   
@@ -84,7 +124,7 @@ class DbRepository extends ChangeNotifier {
     
     
     notifyListeners();
-    print(alldata);
+    
     print(listTileBuilder);
     
     
@@ -98,7 +138,7 @@ class DbRepository extends ChangeNotifier {
     final db = await DB.instance.database;
     final clear = await db.delete('dailytask');
     notifyListeners();
-
+    return;
   }
 
   Future updateData({status, id})async {
@@ -108,6 +148,7 @@ class DbRepository extends ChangeNotifier {
     );
     notifyListeners();
     print('id da task atualizada $dbupadateId');
+    return;
   }
 
 
