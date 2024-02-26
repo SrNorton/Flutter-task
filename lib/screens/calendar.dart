@@ -76,6 +76,7 @@ class _CalendarState extends State<Calendar> {
         ),
       ),
         body: SfCalendar(
+          key: UniqueKey(),
           view: CalendarView.month,
           allowedViews: <CalendarView>[
             CalendarView.day,
@@ -181,10 +182,13 @@ class _CalendarState extends State<Calendar> {
     );  
 
     context.read<DbRepository>().readCommitment();
-    setState(() {
-      
-    });
+   
     
+                        // context.findAncestorStateOfType<_CalendarState>()?.build(context);
+                        setState(() {
+                          
+                        });
+                        _textController.clear();
                         Navigator.of(context).pop();
 
                         } else {
@@ -197,6 +201,14 @@ class _CalendarState extends State<Calendar> {
                       ),
                         ],
                       ),
+                     Center(
+                       child: Text('O compromisso será salvo no dia selecionado com um toque',
+                       style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 13,
+                       ),
+                       ),
+                     )
                      
                     ]
                   ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_app/manager/timeManager.dart';
 
-class EditHours extends StatefulWidget with ChangeNotifier {
+class EditHours extends StatefulWidget  {
  
   EditHours(
   );

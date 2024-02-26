@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:task_app/database/dbRepository.dart';
 
 class CircleTask {
   Color color;

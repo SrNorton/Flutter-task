@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progresso/progresso.dart';
 import 'package:task_app/constants/constants.dart';
+import 'package:task_app/screens/timerStudyScreen.dart';
 
 class CardTask extends StatefulWidget {
   String title;
@@ -35,6 +36,7 @@ class _CardTaskState extends State<CardTask> {
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, top: 12),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(widget.title,
                    style: TextStyle(
@@ -44,7 +46,12 @@ class _CardTaskState extends State<CardTask> {
                           fontFamily: "TitilliumWeb",
                         ),
                   
-                  )
+                  ),
+                  IconButton(onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => TimerStudyScreen()));
+                  }, icon: Icon(Icons.arrow_circle_right_outlined,
+                  color: Colors.blueAccent,
+                  ))
                 ],
               ),
             ),

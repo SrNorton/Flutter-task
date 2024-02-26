@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:task_app/components/statusTask.dart';
-import 'package:task_app/models/tile.dart';
 
 class TileTask extends StatelessWidget {
 

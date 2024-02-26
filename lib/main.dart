@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_app/database/dbRepository.dart';
+import 'package:task_app/manager/focustTimeManager.dart';
 import 'package:task_app/manager/timeManager.dart';
 
 
@@ -16,6 +17,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => DbRepository(),lazy: false,),
         ChangeNotifierProvider(create: (_) => TimeProvider(), lazy: false,),
+        ChangeNotifierProvider(create: (_) => FocusTimeManager(),),
       ],
       
       child: const MyApp()

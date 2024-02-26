@@ -1,4 +1,3 @@
-import 'package:circular_progress_stack/circular_progress_stack.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_app/components/cardCircleProgress.dart';
@@ -7,7 +6,6 @@ import 'package:task_app/components/tileTasks.dart';
 import 'package:task_app/constants/constants.dart';
 import 'package:task_app/database/dbRepository.dart';
 import 'package:task_app/models/circleTask.dart';
-import 'package:task_app/models/tile.dart';
 
 class DashPage extends StatefulWidget {
   

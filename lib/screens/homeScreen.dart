@@ -1,10 +1,7 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:task_app/components/barchart.dart';
 import 'package:task_app/components/cardTasks.dart';
 import 'package:task_app/constants/constants.dart';
-import 'package:task_app/database/dbRepository.dart';
 
 import 'package:task_app/models/cardModel.dart';
 import 'package:task_app/screens/dashPage.dart';
