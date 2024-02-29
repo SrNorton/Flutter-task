@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:task_app/components/barchart.dart';
 import 'package:task_app/components/cardTasks.dart';
 import 'package:task_app/constants/constants.dart';
 
 import 'package:task_app/models/cardModel.dart';
 import 'package:task_app/screens/dashPage.dart';
+import 'package:task_app/screens/timerStudyScreen.dart';
 
 
 
@@ -117,12 +119,34 @@ class HomePage extends StatelessWidget {
     Expanded(
       
       child: Container(
-        child: ListView.builder(
+        child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          itemCount: cardlist.length,
-          itemBuilder: (context, index) {
-          return CardTask(title: cardlist[index].title, progress: cardlist[index].progress);
-        }),
+          child: Row(
+            children: [
+              CardTask(title: 'Estudo', progress: 0.5, function: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> TimerStudyScreen()));
+
+              }
+              
+                // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> TimerStudyScreen()));
+            ),
+              // CardTask(title: 'Lista de Compras', progress: 0.7),
+            ],
+          ),
+        ),
+        
+        
+        
+        // ListView.builder(
+        //   scrollDirection: Axis.horizontal,
+        //   itemCount: cardlist.length,
+        //   itemBuilder: (context, index) {
+        //   return CardTask(title: cardlist[index].title, progress: cardlist[index].progress,
+        //   function: ()=> print('card'),
+           
+          
+        //   );
+        // }),
       ),
     )
 

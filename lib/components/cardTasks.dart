@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:progresso/progresso.dart';
 import 'package:task_app/constants/constants.dart';
-import 'package:task_app/screens/timerStudyScreen.dart';
+
 
 class CardTask extends StatefulWidget {
   String title;
   double progress;
+  VoidCallback function;
   
    CardTask({
-    required this.title, required this.progress
+    required this.title, required this.progress, required this.function
   });
 
   @override
@@ -16,13 +17,18 @@ class CardTask extends StatefulWidget {
 }
 
 class _CardTaskState extends State<CardTask> {
+
+  final mykey = GlobalKey<FormState>();
+
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8, top: 15, bottom: 15),
       child: Container(
         width: MediaQuery.of(context).size.width - 15,
-        height: 200,
+        height: 223,
       
         decoration: BoxDecoration(
           border: Border.all(
@@ -47,15 +53,17 @@ class _CardTaskState extends State<CardTask> {
                         ),
                   
                   ),
-                  IconButton(onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => TimerStudyScreen()));
-                  }, icon: Icon(Icons.arrow_circle_right_outlined,
+                  IconButton(
+                    onPressed:  widget.function,
+                    
+                  
+                  icon: Icon(Icons.arrow_circle_right_outlined,
                   color: Colors.blueAccent,
                   ))
                 ],
               ),
             ),
-            SizedBox(height: 85,),
+            SizedBox(height: 30,),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15,),
               child: Column(
@@ -87,7 +95,8 @@ class _CardTaskState extends State<CardTask> {
                             Padding(
                               padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 35),
                               child: Progresso(
-                                          progress: 50.0, 
+                                          
+                                          progress: widget.progress, 
                                           progressStrokeCap: StrokeCap.round,
                                           backgroundStrokeCap: StrokeCap.round,
                                           progressColor: Kgreenprogress,

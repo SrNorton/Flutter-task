@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:task_app/components/statusTask.dart';
+import 'package:flutter_dismissible_tile/flutter_dismissible_tile.dart';
+import 'package:task_app/database/dbRepository.dart';
+
 
 class TileTask extends StatelessWidget {
 
@@ -13,35 +17,63 @@ class TileTask extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return  Card(
-      margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-        child: Row(
-          children: [
-           
-            Container(
-              height: 60,
-              width: 60,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Image.asset(image!),
-              ),
-            ),
-            Expanded(
-              child: 
-              Container(
-                child: Text(task!,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold
-                ),
-                ),
-              ),),
-              StatusTask(idtask: id, bool: tilebool!,),
+  var data = context.read<DbRepository>();
 
-          ],),
+
+  void delete(){
+    data.deleteData(id: id);
+    data.readallData();
+  }
+
+    return  DismissibleTile(
+      key: UniqueKey(),
+      onDismissConfirmed: delete,
+      rtlDismissedColor: Colors.redAccent,
+      rtlOverlay: const Text('Delete', 
+       style:TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: "TitilliumWeb",
+                        ),
       ),
-
+      rtlOverlayDismissed: const Text('Deleted',
+       style:TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: "TitilliumWeb",
+                        ),),
+      child: Card(
+        margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+          child: Row(
+            children: [
+             
+              Container(
+                height: 60,
+                width: 60,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(image!),
+                ),
+              ),
+              Expanded(
+                child: 
+                Container(
+                  child: Text(task!,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold
+                  ),
+                  ),
+                ),),
+                StatusTask(idtask: id, bool: tilebool!,),
+      
+            ],),
+        ),
+      
+      ),
     );
   }
 }

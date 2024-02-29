@@ -7,7 +7,6 @@ import 'package:neon_circular_timer/neon_circular_timer.dart';
 import 'package:task_app/manager/focustTimeManager.dart';
 
  
-  final _formKey = GlobalKey<_TimerStudyScreenState>();
 
 
 class TimerStudyScreen extends StatefulWidget {

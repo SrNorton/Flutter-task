@@ -132,10 +132,11 @@ class DbRepository extends ChangeNotifier {
 
   
 
-  Future deleteData() async {
+  Future deleteData({id}) async {
     final db = await DB.instance.database;
-    final clear = await db.delete('dailytask');
+    final clear = await db.delete('dailytask', where: 'id=?', whereArgs: [id]);
     notifyListeners();
+    print('id da task deletado $id');
     return;
   }
 

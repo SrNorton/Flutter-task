@@ -47,6 +47,7 @@ dependencies:
   fl_chart: ^0.66.0
   syncfusion_flutter_calendar: ^24.2.3
   neon_circular_timer: ^0.0.7
+  flutter_dismissible_tile: ^1.0.2
 
 dev_dependencies:
   flutter_test:
