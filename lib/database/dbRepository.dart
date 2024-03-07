@@ -33,6 +33,18 @@ class DbRepository extends ChangeNotifier {
     
   }
 
+  Future setShoppingList({item, status}) async {
+    final db = await DB.instance.database;
+
+    await db.insert('shopping', {
+      'item': item,
+      'status': status,
+    });
+    notifyListeners();
+
+    
+  }
+
   List<Meeting> listMeetingDb = [];
 
 
@@ -94,7 +106,7 @@ class DbRepository extends ChangeNotifier {
 
   List listCommitment = [];
   
-
+  List listShopping = [];
   
   
  
@@ -112,7 +124,13 @@ class DbRepository extends ChangeNotifier {
   
 
   
-
+  Future readListShopping()async {
+    final db = await DB.instance.database;
+    final allShopping = await db.query('shopping');
+    listShopping = allShopping;
+    notifyListeners();
+    return;
+  }
 
 
   Future readallData() async {
@@ -128,6 +146,13 @@ class DbRepository extends ChangeNotifier {
     
     return;
 
+  }
+
+  Future deleteItemShopping({id}) async {
+    final db = await DB.instance.database;
+    final clear = await db.delete('shopping', where: 'id=?', whereArgs: [id] );
+    notifyListeners();
+    return;
   }
 
   
@@ -148,6 +173,13 @@ class DbRepository extends ChangeNotifier {
     notifyListeners();
     print('id da task atualizada $dbupadateId');
     return;
+  }
+
+  Future updateListShopping({status, id}) async {
+    final db = await DB.instance.database;
+    int updateList = await db.rawUpdate(
+      'UPDATE shopping SET status= WHERE id=?', [status, id]
+    );
   }
 
 

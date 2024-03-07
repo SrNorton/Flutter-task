@@ -102,8 +102,8 @@ CREATE TABLE commitment(
 String get _shopping =>'''
   CREATE TABLE shopping(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    description TEXT
-    
+    item TEXT,
+    status TEXT
   );
 ''';
 

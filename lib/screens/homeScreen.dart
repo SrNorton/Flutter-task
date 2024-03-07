@@ -6,6 +6,7 @@ import 'package:task_app/constants/constants.dart';
 
 import 'package:task_app/models/cardModel.dart';
 import 'package:task_app/screens/dashPage.dart';
+import 'package:task_app/screens/shoppingListScreen.dart';
 import 'package:task_app/screens/timerStudyScreen.dart';
 
 
@@ -130,7 +131,10 @@ class HomePage extends StatelessWidget {
               
                 // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> TimerStudyScreen()));
             ),
-              // CardTask(title: 'Lista de Compras', progress: 0.7),
+              CardTask(title: 'Lista de Compras', progress: 0.7, function: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ShoppingListScreen()));
+
+              },),
             ],
           ),
         ),

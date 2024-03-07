@@ -28,7 +28,7 @@ class _TimerStudyScreenState extends State<TimerStudyScreen> {
 
 
       int timeProvider = context.watch<FocusTimeManager>().timefocus;
-      int timer = timeProvider * 2;
+      int timer = timeProvider * 60;
       
 
 
