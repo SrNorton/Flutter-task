@@ -42,7 +42,7 @@ class DbRepository extends ChangeNotifier {
     });
     notifyListeners();
 
-    
+
   }
 
   List<Meeting> listMeetingDb = [];
@@ -100,6 +100,25 @@ class DbRepository extends ChangeNotifier {
   }
 
 
+
+  Future setStudyTime({time, weekday})async{
+    final db = await DB.instance.database;
+
+    final studyTime = await db.insert('studies', {
+      'time': time,
+      'weekday': weekday
+    });
+    listTimeStudy = studyTime;
+    print('$time minutos adicionados ao dia $weekday');
+    notifyListeners();
+  }
+
+
+  //Lists
+
+  List listTimeStudy = [];
+
+
   List listTileBuilder = [];
    
   
@@ -147,7 +166,7 @@ class DbRepository extends ChangeNotifier {
     return;
 
   }
-
+  //deletar item, lista de compras
   Future deleteItemShopping({id}) async {
     final db = await DB.instance.database;
     final clear = await db.delete('shopping', where: 'id=?', whereArgs: [id] );
@@ -165,6 +184,12 @@ class DbRepository extends ChangeNotifier {
     return;
   }
 
+  Future deleteStudieDb() async {
+    final db = await DB.instance.database;
+    await db.delete('studies');
+    notifyListeners();
+  }
+
   Future updateData({status, id})async {
     final db = await DB.instance.database;
     int dbupadateId = await db.rawUpdate(
@@ -175,11 +200,15 @@ class DbRepository extends ChangeNotifier {
     return;
   }
 
+  
+  //update shopping list 
   Future updateListShopping({status, id}) async {
     final db = await DB.instance.database;
     int updateList = await db.rawUpdate(
-      'UPDATE shopping SET status= WHERE id=?', [status, id]
+      'UPDATE shopping SET status= ? WHERE id=?', [status, id]
     );
+    notifyListeners();
+    return;
   }
 
 

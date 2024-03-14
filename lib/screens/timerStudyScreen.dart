@@ -4,6 +4,7 @@ import 'package:task_app/components/focusTimeController.dart';
 import 'package:task_app/components/initTimeButton.dart';
 import 'package:task_app/constants/constants.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
+import 'package:task_app/database/dbRepository.dart';
 import 'package:task_app/manager/focustTimeManager.dart';
 
  
@@ -24,24 +25,68 @@ class _TimerStudyScreenState extends State<TimerStudyScreen> {
   @override
   Widget build(BuildContext context) {
 
-    
+       var data = context.read<DbRepository>();
 
 
+      final DateTime weekday = DateTime.now();
       int timeProvider = context.watch<FocusTimeManager>().timefocus;
       int timer = timeProvider * 60;
+      var dayName;
       
 
 
 
       void setTime(){
       
+          switch (weekday.weekday) {
+      case  1:
+     dayName =  'Mon';
+        
+        break;
+        case 2:
+       dayName = 'Tue';
+       break;
+        case 3:
+        
+       dayName = 'Wed';
+       break;
+        case 4:
+       dayName = 'Thu';
+       break;
+       case 5:
 
+       dayName = 'Fri';
+       break;
+
+       case 6:
+
+       dayName = 'Sat';
+       break;
+
+       case 7:
+       dayName = 'Sun';
+
+      default:
+      dayName = 'Error Day';
+    }
+
+    if(dayName == 'Mon') 
+    {
+      data.deleteStudieDb();
+    }
+
+    data.setStudyTime(
+      time: timeProvider,
+      weekday: dayName
+      );
         
         
           
         setState(() {
-        timer = timeProvider;
+        // timer = timeProvider;
         });
+        print('Minutos selecionados $timeProvider');
+        print(dayName);
         // Navigator.of(context).pushReplacement(MaterialPageRoute(
           
         //   builder: (BuildContext context){

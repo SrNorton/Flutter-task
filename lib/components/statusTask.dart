@@ -22,6 +22,8 @@ class _StatusTaskState extends State<StatusTask> {
 
   @override
   Widget build(BuildContext context) {
+  
+  
   var data = context.read<DbRepository>();
 
   isChecked = widget.bool == 'true' ? true : false;
@@ -40,6 +42,7 @@ class _StatusTaskState extends State<StatusTask> {
           checkedColor: Colors.green,
         ),
         style: MSHCheckboxStyle.fillScaleColor,
+        
         onChanged: (selected) {
           upDate(change: selected  ? 'true' : 'false');
           setState(() {

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
+import 'package:provider/provider.dart';
 import 'package:task_app/components/barchart.dart';
 import 'package:task_app/components/cardTasks.dart';
 import 'package:task_app/constants/constants.dart';
+import 'package:task_app/database/dbRepository.dart';
 
 import 'package:task_app/models/cardModel.dart';
 import 'package:task_app/screens/dashPage.dart';
@@ -16,6 +18,24 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var listTotal = context.watch<DbRepository>().listShopping;
+    var listShoppingDone = listTotal.where((e) => e['status'] == 'true').toList();
+
+
+  double percentage (){
+    var total = listTotal.length;
+    var percent = listShoppingDone.length * 100/ total;
+    var result = percent/100;
+    return total == 0 ? 0 : result;
+  }
+
+
+
+
+
+
+
     return Scaffold(
       backgroundColor: Kbackground,
       body: Column(
@@ -131,7 +151,7 @@ class HomePage extends StatelessWidget {
               
                 // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> TimerStudyScreen()));
             ),
-              CardTask(title: 'Lista de Compras', progress: 0.7, function: (){
+              CardTask(title: 'Lista de Compras', progress: percentage(), function: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ShoppingListScreen()));
 
               },),

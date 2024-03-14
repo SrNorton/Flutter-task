@@ -68,8 +68,8 @@ class DB {
 String get _studies => '''
 CREATE TABLE studies(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  matter TEXT,
-  subject TEXT
+  time INT,
+  weekday TEXT
   );
 ''';
 

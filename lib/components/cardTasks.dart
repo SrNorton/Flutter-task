@@ -71,7 +71,7 @@ class _CardTaskState extends State<CardTask> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('45/80',
+                      Text('',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -79,7 +79,7 @@ class _CardTaskState extends State<CardTask> {
                           fontFamily: "TitilliumWeb",
                         ),
                       ),
-                      Text(widget.progress.toString()+"%",
+                      Text((widget.progress * 100).toString()+"%",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
