@@ -4,6 +4,8 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:task_app/database/dbRepository.dart';
 
 class BarChartSample1 extends StatefulWidget {
   BarChartSample1({super.key});
@@ -33,8 +35,58 @@ class BarChartSample1State extends State<BarChartSample1> {
 
   bool isPlaying = false;
 
+  var day1 = 0.0;
+  var day2 = 0.0;
+  var day3 = 0.0;
+  var day4 = 0.0;
+  var day5 = 0.0;
+  var day6 = 0.0;
+  var day7 = 0.0;
+
+
+   setValue(num mon, num tue, num wed, num thu, num fri, num sat, num sun){
+    day1 = mon + .0;
+    day3 = wed + .0;
+    day4 = thu + .0;
+    day5 = fri + .0;
+    day2 = tue + .0;
+    day6 = sat + .0;
+    day7 = sun + .0;
+return;
+
+  }
+   
+   
+
   @override
   Widget build(BuildContext context) {
+
+    var listFilter = context.watch<DbRepository>().listTimeStudy;
+    var monValue = listFilter.where((e) => e['weekday'] == 'Mon').toList();
+    var tueValue = listFilter.where((e) => e['weekday'] == 'Tue').toList();
+    var wedValue = listFilter.where((e) => e['weekday'] == 'Wed').toList();
+    var thuValue = listFilter.where((e) => e['weekday'] == 'Thu').toList();
+    var friValue = listFilter.where((e) => e['weekday'] == 'Fri').toList();
+    var satValue = listFilter.where((e) => e['weekday'] == 'Sat').toList();
+    var sunValue = listFilter.where((e) => e['weekday'] == 'Sun').toList();
+
+
+    
+      var day1 = monValue.isEmpty ? 0.0 : monValue.first['time'];
+      var day3 = wedValue.isEmpty ? 0.0 : wedValue.first['time'];
+      var day4 = thuValue.isEmpty ? 0.0 : thuValue.first['time'];
+      var day2 = tueValue.isEmpty ? 0.0 : tueValue.first['time'];
+      var day5 = friValue.isEmpty ? 0.0 : friValue.first['time'];
+      var day6 = satValue.isEmpty ? 0.0 : satValue.first['time'];
+      var day7 = sunValue.isEmpty ? 0.0 : sunValue.first['time'];
+    
+setValue(day1, day2, day3, day4, day5, day6, day7);
+
+    // print('esta é a lista $day1');
+
+
+
+
     return AspectRatio(
       aspectRatio: 1,
       child: Stack(
@@ -115,6 +167,7 @@ class BarChartSample1State extends State<BarChartSample1> {
     List<int> showTooltips = const [],
   }) {
     barColor ??= widget.barColor;
+    
     return BarChartGroupData(
       x: x,
       barRods: [
@@ -136,22 +189,24 @@ class BarChartSample1State extends State<BarChartSample1> {
     );
   }
 
-  List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
+  
+
+  List<BarChartGroupData> showingGroups( ) => List.generate(7, (i) {
         switch (i) {
           case 0:
-            return makeGroupData(0, 5, isTouched: i == touchedIndex);
+            return makeGroupData(0, day1, isTouched: i == touchedIndex);
           case 1:
-            return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
+            return makeGroupData(1, day2, isTouched: i == touchedIndex);
           case 2:
-            return makeGroupData(2, 5, isTouched: i == touchedIndex);
+            return makeGroupData(2, day3, isTouched: i == touchedIndex);
           case 3:
-            return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
+            return makeGroupData(3, day4, isTouched: i == touchedIndex);
           case 4:
-            return makeGroupData(4, 9, isTouched: i == touchedIndex);
+            return makeGroupData(4, day5, isTouched: i == touchedIndex);
           case 5:
-            return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
+            return makeGroupData(5, day6, isTouched: i == touchedIndex);
           case 6:
-            return makeGroupData(6, 6.5, isTouched: i == touchedIndex);
+            return makeGroupData(6, day7, isTouched: i == touchedIndex);
           default:
             return throw Error();
         }

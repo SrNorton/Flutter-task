@@ -104,11 +104,11 @@ class DbRepository extends ChangeNotifier {
   Future setStudyTime({time, weekday})async{
     final db = await DB.instance.database;
 
-    final studyTime = await db.insert('studies', {
+    await db.insert('studies', {
       'time': time,
       'weekday': weekday
     });
-    listTimeStudy = studyTime;
+    
     print('$time minutos adicionados ao dia $weekday');
     notifyListeners();
   }
@@ -127,7 +127,13 @@ class DbRepository extends ChangeNotifier {
   
   List listShopping = [];
   
-  
+  Future readStudydata () async {
+    final db = await DB.instance.database;
+    final allStudydata = await db.query('studies');
+    listTimeStudy = allStudydata;
+    notifyListeners();
+    return;
+  }
  
 
   Future readCommitment() async {
@@ -208,6 +214,7 @@ class DbRepository extends ChangeNotifier {
       'UPDATE shopping SET status= ? WHERE id=?', [status, id]
     );
     notifyListeners();
+    print('id do item atualizado $id');
     return;
   }
 

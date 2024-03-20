@@ -45,7 +45,7 @@ class CardCircleProgress extends StatelessWidget {
 
     double percentageYellow (){
       var total = listYellowDone.length + listYellowInProgress.length;
-      print('este é o valor total $total');
+      // print('este é o valor total $total');
       
       return total == 0 ? 0 : listYellowDone.length * 100 / total;
     }

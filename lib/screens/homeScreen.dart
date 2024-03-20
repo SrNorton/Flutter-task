@@ -18,6 +18,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<DbRepository>().readStudydata();
+
 
     var listTotal = context.watch<DbRepository>().listShopping;
     var listShoppingDone = listTotal.where((e) => e['status'] == 'true').toList();

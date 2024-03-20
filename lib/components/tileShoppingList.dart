@@ -25,7 +25,8 @@ class TileShoppingList extends StatelessWidget {
 
 
 
-    return DismissibleTile(
+    return 
+    DismissibleTile(
        key: UniqueKey(),
       onDismissConfirmed: delete,
       rtlDismissedColor: Colors.redAccent,
@@ -44,7 +45,8 @@ class TileShoppingList extends StatelessWidget {
                           fontWeight: FontWeight.w800,
                           fontFamily: "TitilliumWeb",
                         ),),
-      child: Card(
+      child:
+       Card(
               margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
               child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 6),

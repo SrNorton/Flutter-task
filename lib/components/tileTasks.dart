@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dismissible_tile/flutter_dismissible_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:task_app/components/statusTask.dart';
-import 'package:flutter_dismissible_tile/flutter_dismissible_tile.dart';
+
 import 'package:task_app/database/dbRepository.dart';
 
 
@@ -25,7 +26,8 @@ class TileTask extends StatelessWidget {
     data.readallData();
   }
 
-    return  DismissibleTile(
+    return 
+    DismissibleTile(
       key: UniqueKey(),
       onDismissConfirmed: delete,
       rtlDismissedColor: Colors.redAccent,
@@ -44,7 +46,8 @@ class TileTask extends StatelessWidget {
                           fontWeight: FontWeight.w800,
                           fontFamily: "TitilliumWeb",
                         ),),
-      child: Card(
+      child: 
+    Card(
         margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
