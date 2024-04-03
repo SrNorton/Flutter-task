@@ -1,8 +1,10 @@
+
+
+import 'package:daily_task/components/statusShoppingList.dart';
+import 'package:daily_task/database/dbRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dismissible_tile/flutter_dismissible_tile.dart';
 import 'package:provider/provider.dart';
-import 'package:task_app/components/statusShoppingList.dart';
-import 'package:task_app/database/dbRepository.dart';
 
 class TileShoppingList extends StatelessWidget {
    
@@ -26,26 +28,26 @@ class TileShoppingList extends StatelessWidget {
 
 
     return 
-    DismissibleTile(
-       key: UniqueKey(),
-      onDismissConfirmed: delete,
-      rtlDismissedColor: Colors.redAccent,
-      rtlOverlay: const Text('Delete', 
-       style:TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w800,
-                          fontFamily: "TitilliumWeb",
-                        ),
-      ),
-      rtlOverlayDismissed: const Text('Deleted',
-       style:TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w800,
-                          fontFamily: "TitilliumWeb",
-                        ),),
-      child:
+    // DismissibleTile(
+    //    key: UniqueKey(),
+    //   onDismissConfirmed: delete,
+    //   rtlDismissedColor: Colors.redAccent,
+    //   rtlOverlay: const Text('Delete', 
+    //    style:TextStyle(
+    //                       color: Colors.white,
+    //                       fontSize: 25,
+    //                       fontWeight: FontWeight.w800,
+    //                       fontFamily: "TitilliumWeb",
+    //                     ),
+    //   ),
+    //   rtlOverlayDismissed: const Text('Deleted',
+    //    style:TextStyle(
+    //                       color: Colors.white,
+    //                       fontSize: 25,
+    //                       fontWeight: FontWeight.w800,
+    //                       fontFamily: "TitilliumWeb",
+    //                     ),),
+    //   child:
        Card(
               margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
               child: Padding(
@@ -76,12 +78,12 @@ class TileShoppingList extends StatelessWidget {
               ),
               ),
             ),),
-          StatusShoppingList(idItem: id, bool: tilebool!,),
+          StatusShoppingList(idItem: id, bool: tilebool, ),
             
         ],),
               ),
             
-            ),
-    );
+            );
+    // );
   }
 }

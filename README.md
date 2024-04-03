@@ -1,4 +1,4 @@
-# task_app
+# daily_task
 
 A new Flutter project.
 

@@ -1,10 +1,12 @@
+
+
+
 import 'package:circular_progress_stack/circular_progress_stack.dart';
+import 'package:daily_task/database/dbRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:task_app/constants/constants.dart';
-import 'package:task_app/database/dbRepository.dart';
-
+import '../constants/constants.dart';
 
 class CardCircleProgress extends StatelessWidget {
    final Color color;

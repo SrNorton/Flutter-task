@@ -1,10 +1,12 @@
+
+
 import 'package:bottom_sheet/bottom_sheet.dart';
+import 'package:daily_task/components/textFormShoppingList.dart';
+import 'package:daily_task/components/tileShoppingList.dart';
+import 'package:daily_task/constants/constants.dart';
+import 'package:daily_task/database/dbRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:task_app/components/textFormShoppingList.dart';
-import 'package:task_app/components/tileShoppingList.dart';
-import 'package:task_app/constants/constants.dart';
-import 'package:task_app/database/dbRepository.dart';
 
 class ShoppingListScreen extends StatefulWidget {
   const ShoppingListScreen({super.key});
@@ -70,16 +72,23 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                       itemCount: dbrepository.listShopping.length,
                       itemBuilder: (BuildContext ctx, int index){
             
-                        return  TileShoppingList(
+                        return 
+                        
+                        //  Container(
+                        //   height: 200,
+                        //   width: 300,
+                        //   child: Row(
+                        //     children: [
+                        //       Center(child: StatusShoppingList(idItem: 1, ))
+                        //     ],),
+                        // );
+                        
+                        TileShoppingList(
                           id: dbrepository.listShopping[index]['id'],
                            item: dbrepository.listShopping[index]['item'],
                           tilebool: dbrepository.listShopping[index]['status'],
                           );
-                        // TileTask(image: dbrepository.listTileBuilder[index]['type'],
-                        // task: dbrepository.listTileBuilder[index]['description'],
-                        // id: dbrepository.listTileBuilder[index]['id'],
-                        // tilebool: dbrepository.listTileBuilder[index]['status'],
-                        // );
+                      
                         
                       }
                       

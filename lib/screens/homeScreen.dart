@@ -1,17 +1,16 @@
+
+
+
+import 'package:daily_task/components/barchart.dart';
+import 'package:daily_task/components/cardTasks.dart';
+import 'package:daily_task/constants/constants.dart';
+import 'package:daily_task/database/dbRepository.dart';
+import 'package:daily_task/screens/dashPage.dart';
+import 'package:daily_task/screens/editProfile.dart';
+import 'package:daily_task/screens/shoppingListScreen.dart';
+import 'package:daily_task/screens/timerStudyScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:provider/provider.dart';
-import 'package:task_app/components/barchart.dart';
-import 'package:task_app/components/cardTasks.dart';
-import 'package:task_app/constants/constants.dart';
-import 'package:task_app/database/dbRepository.dart';
-
-import 'package:task_app/models/cardModel.dart';
-import 'package:task_app/screens/dashPage.dart';
-import 'package:task_app/screens/shoppingListScreen.dart';
-import 'package:task_app/screens/timerStudyScreen.dart';
-
-
 
 class HomePage extends StatelessWidget {
    HomePage({super.key});
@@ -114,12 +113,11 @@ class HomePage extends StatelessWidget {
                             fontFamily: "TitilliumWeb",
                           ),
               ),
-              // Container(
-              //   child: Image.asset("assets/images/pie.png",
-              //   height: 100,
-              //   width: 200,
-              //   ),
-              // ),
+              IconButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => EditProfile()));
+              }, icon: Icon(Icons.edit,
+              color: Colors.grey,
+              ))
             ],
           ),
         ),

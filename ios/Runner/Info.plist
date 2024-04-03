@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Task App</string>
+	<string>Daily Task</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>task_app</string>
+	<string>daily_task</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -45,6 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>O uso da livraria é para escolha de uma imagem de perfil do usuário</string>
+	<key>NSCameraUsageDescription</key>
+	<string>O uso da câmera é para tirar uma foto a ser usada no perfil do usuário</string>
 </dict>
 </plist>

@@ -1,7 +1,9 @@
+
+
+import 'package:daily_task/database/db.dart';
+import 'package:daily_task/models/meeting.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:task_app/database/db.dart';
-import 'package:task_app/models/meeting.dart';
 
 class DbRepository extends ChangeNotifier {
   late Database db;
@@ -66,7 +68,7 @@ class DbRepository extends ChangeNotifier {
       }).toList();
       
       listMeetingDb = listCalendarCommitment;
-    print(listMeetingDb[0].eventName);
+    
 
       notifyListeners();
       return listCalendarCommitment;

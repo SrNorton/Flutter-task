@@ -1,7 +1,8 @@
+import 'package:daily_task/constants/constants.dart';
+import 'package:daily_task/database/dbRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:progresso/progresso.dart';
-import 'package:task_app/constants/constants.dart';
-
+import 'package:provider/provider.dart';
 
 class CardTask extends StatefulWidget {
   String title;
@@ -24,6 +25,8 @@ class _CardTaskState extends State<CardTask> {
 
   @override
   Widget build(BuildContext context) {
+         context.read<DbRepository>().readListShopping();
+    
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8, top: 15, bottom: 15),
       child: Container(

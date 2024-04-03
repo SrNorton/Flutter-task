@@ -1,12 +1,14 @@
+
+
+import 'package:daily_task/database/dbRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:provider/provider.dart';
-import 'package:task_app/database/dbRepository.dart';
 
 class StatusShoppingList extends StatefulWidget {
   final int? idItem;
   final String? bool;
-  StatusShoppingList({required this.idItem, required this.bool});
+  StatusShoppingList({required this.idItem, this.bool});
 
   @override
   State<StatusShoppingList> createState() => _StatusShoppingListState();
@@ -14,7 +16,7 @@ class StatusShoppingList extends StatefulWidget {
 
 class _StatusShoppingListState extends State<StatusShoppingList> {
 
-  bool? isChecked;
+  bool? isChecked = false;
 
 
   
@@ -28,6 +30,7 @@ class _StatusShoppingListState extends State<StatusShoppingList> {
 
   Future upDate({String? change}) async{
          await data.updateListShopping(status: change, id: widget.idItem);
+         
 
   }
 
@@ -42,11 +45,12 @@ class _StatusShoppingListState extends State<StatusShoppingList> {
         ),
         style: MSHCheckboxStyle.fillScaleColor,
        
-        onChanged: (selected) {
+        onChanged: (bool selected) {
           upDate(change: selected  ? 'true' : 'false');
           setState(() {
            
             isChecked = selected;
+            print('apertei');
           
             data.readListShopping();
 
