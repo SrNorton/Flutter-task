@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ButtonShoppingList extends StatelessWidget {
   
 
-  VoidCallback function;
+  final VoidCallback function;
   
   ButtonShoppingList({
     required this.function

@@ -1,16 +1,19 @@
 
 
 
-import 'package:daily_task/components/barchart.dart';
-import 'package:daily_task/components/cardTasks.dart';
-import 'package:daily_task/constants/constants.dart';
-import 'package:daily_task/database/dbRepository.dart';
-import 'package:daily_task/screens/dashPage.dart';
-import 'package:daily_task/screens/editProfile.dart';
-import 'package:daily_task/screens/shoppingListScreen.dart';
-import 'package:daily_task/screens/timerStudyScreen.dart';
+
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task_app/components/barchart.dart';
+import 'package:task_app/components/cardTasks.dart';
+import 'package:task_app/constants/constants.dart';
+import 'package:task_app/database/dbRepository.dart';
+import 'package:task_app/screens/dashPage.dart';
+import 'package:task_app/screens/editProfile.dart';
+import 'package:task_app/screens/shoppingListScreen.dart';
+import 'package:task_app/screens/timerStudyScreen.dart';
 
 class HomePage extends StatelessWidget {
    HomePage({super.key});
@@ -28,11 +31,12 @@ class HomePage extends StatelessWidget {
     var total = listTotal.length;
     var percent = listShoppingDone.length * 100/ total;
     var result = percent/100;
+    
     return total == 0 ? 0 : result;
   }
 
 
-
+  var formated = percentage().toStringAsFixed(2);
 
 
 
@@ -151,7 +155,7 @@ class HomePage extends StatelessWidget {
               
                 // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> TimerStudyScreen()));
             ),
-              CardTask(title: 'Lista de Compras', progress: percentage(), function: (){
+              CardTask(title: 'Lista de Compras', progress: double.parse(formated), function: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ShoppingListScreen()));
 
               },),

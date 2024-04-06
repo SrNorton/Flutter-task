@@ -1,9 +1,10 @@
 
 
-import 'package:daily_task/database/db.dart';
-import 'package:daily_task/models/meeting.dart';
+
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:task_app/database/db.dart';
+import 'package:task_app/models/meeting.dart';
 
 class DbRepository extends ChangeNotifier {
   late Database db;
@@ -177,7 +178,7 @@ class DbRepository extends ChangeNotifier {
   //deletar item, lista de compras
   Future deleteItemShopping({id}) async {
     final db = await DB.instance.database;
-    final clear = await db.delete('shopping', where: 'id=?', whereArgs: [id] );
+     await db.delete('shopping', where: 'id=?', whereArgs: [id] );
     notifyListeners();
     return;
   }
@@ -186,7 +187,7 @@ class DbRepository extends ChangeNotifier {
 
   Future deleteData({id}) async {
     final db = await DB.instance.database;
-    final clear = await db.delete('dailytask', where: 'id=?', whereArgs: [id]);
+     await db.delete('dailytask', where: 'id=?', whereArgs: [id]);
     notifyListeners();
     print('id da task deletado $id');
     return;

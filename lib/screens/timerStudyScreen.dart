@@ -3,13 +3,13 @@
  
 
 
-import 'package:daily_task/components/focusTimeController.dart';
-import 'package:daily_task/components/initTimeButton.dart';
-import 'package:daily_task/database/dbRepository.dart';
-import 'package:daily_task/manager/focustTimeManager.dart';
 import 'package:flutter/material.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 import 'package:provider/provider.dart';
+import 'package:task_app/components/focusTimeController.dart';
+import 'package:task_app/components/initTimeButton.dart';
+import 'package:task_app/database/dbRepository.dart';
+import 'package:task_app/manager/focustTimeManager.dart';
 
 import '../constants/constants.dart';
 

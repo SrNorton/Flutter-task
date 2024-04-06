@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 class GenericButton extends StatelessWidget {
   
-  String title;
-  IconData icon;
-  VoidCallback function;
+  final String title;
+  final IconData? icon;
+  final VoidCallback function;
+  final Color? color;
   
   GenericButton({
-    required this.title, required this.icon, required this.function
+    required this.title,  this.icon, required this.function, this.color
   });
 
   @override
@@ -19,7 +20,7 @@ class GenericButton extends StatelessWidget {
        width: 300,
        decoration: BoxDecoration(
          borderRadius: BorderRadius.circular(20),
-         color: Colors.orange[300],
+         color: color == null ? Colors.orange[300] : color,
        ),
        child: Row(
          mainAxisAlignment: MainAxisAlignment.center,

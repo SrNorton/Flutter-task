@@ -1,10 +1,11 @@
 import 'dart:io';
 
-import 'package:daily_task/components/genericButton.dart';
-import 'package:daily_task/components/nameTextField.dart';
-import 'package:daily_task/constants/constants.dart';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:task_app/components/genericButton.dart';
+import 'package:task_app/components/nameTextField.dart';
+import 'package:task_app/constants/constants.dart';
 
 
 
@@ -80,7 +81,7 @@ color: Colors.white
            Center(
             
              child: Container(
-              height: 400,
+              height: 460,
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration( 
                 borderRadius: BorderRadius.circular(20),
@@ -99,6 +100,9 @@ color: Colors.white
                      GenericButton(title: 'Remover', icon: Icons.delete, function: (){setState(() {
                        imageFile = null;
                      });},),
+                     SizedBox(height: 30,),
+                     GenericButton(title: 'Salvar', icon: Icons.save, function: (){}, color: Colors.blue,)
+
                      
                      
                    ],

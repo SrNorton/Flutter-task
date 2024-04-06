@@ -1,12 +1,12 @@
 
 
 
-import 'package:daily_task/database/dbRepository.dart';
-import 'package:daily_task/manager/focustTimeManager.dart';
-import 'package:daily_task/manager/timeManager.dart';
-import 'package:daily_task/screens/pageView.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task_app/database/dbRepository.dart';
+import 'package:task_app/manager/focustTimeManager.dart';
+import 'package:task_app/manager/timeManager.dart';
+import 'package:task_app/screens/pageView.dart';
 
 void main() {
   

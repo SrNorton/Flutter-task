@@ -1,13 +1,14 @@
-import 'package:daily_task/constants/constants.dart';
-import 'package:daily_task/database/dbRepository.dart';
+
 import 'package:flutter/material.dart';
 import 'package:progresso/progresso.dart';
 import 'package:provider/provider.dart';
+import 'package:task_app/constants/constants.dart';
+import 'package:task_app/database/dbRepository.dart';
 
 class CardTask extends StatefulWidget {
-  String title;
-  double progress;
-  VoidCallback function;
+  final String title;
+  final double progress;
+  final VoidCallback function;
   
    CardTask({
     required this.title, required this.progress, required this.function

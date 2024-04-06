@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CardChoice extends StatelessWidget {
   
-  String image;
+ final String image;
   
   CardChoice({
     required this.image

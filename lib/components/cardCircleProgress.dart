@@ -1,11 +1,11 @@
 
 
 
-import 'package:circular_progress_stack/circular_progress_stack.dart';
-import 'package:daily_task/database/dbRepository.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:task_app/database/dbRepository.dart';
+import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import '../constants/constants.dart';
 
 class CardCircleProgress extends StatelessWidget {
@@ -21,7 +21,8 @@ class CardCircleProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
+
+      ValueNotifier<double> _valueNotifier = ValueNotifier(0);
    
     var listFilter = context.watch<DbRepository>().listTileBuilder;
     var listGreenInProgress = listFilter.where((e) => e['type'] == 'assets/images/ellipsegreen.png' && e['status'] == 'false').toList();
@@ -78,7 +79,8 @@ class CardCircleProgress extends StatelessWidget {
    }
    
    
-    
+    _valueNotifier.value = getpercentage(progress: progress);
+
 
     
     return Container(
@@ -91,33 +93,50 @@ class CardCircleProgress extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20, left: 25, right: 25, bottom: 50),
-            child:  SingleAnimatedStackCircularProgressBar(
-        size: 78,
-        progressStrokeWidth: 15,
-        backStrokeWidth: 15,
-        startAngle: 0,
-        backColor: Color(0xffD7DEE7),
-        barColor: color,
-        barValue: getpercentage(progress: progress),
-          
-        
-
-
-
-
-        textStyle: TextStyle(
-              color: Colors.white
-        ),
-      ),
+            padding: const EdgeInsets.only(top: 20, left: 12, right: 12, bottom: 20),
+            
+            child: SizedBox(
+              height: 115,
+              child: DashedCircularProgressBar.aspectRatio(
+                aspectRatio: 1,
+                 // width ÷ height
+                valueNotifier: _valueNotifier,
+                progress: getpercentage(progress: progress),
+                startAngle: 225,
+                sweepAngle: 270,
+                foregroundColor: color,
+                backgroundColor: const Color(0xffeeeeee),
+                foregroundStrokeWidth: 12,
+                backgroundStrokeWidth: 12,
+                animation: true,
+                seekSize: 6,
+                seekColor: const Color(0xffeeeeee),
+                child: Center(
+                  child: ValueListenableBuilder(
+                    valueListenable: _valueNotifier,
+                    builder: (_, double value, __) =>Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [ 
+                         Text(
+                            '${value.toInt()}%',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w300,
+                              fontSize: 16
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+                ),
+            ),
+         
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 7),
-            child: Text(type,
-            style: TextStyle(
-              color: Colors.white
-            ),
-            ),
+          Text(type,
+          style: TextStyle(
+            color: Colors.white
+          ),
           )
         ],
       ),

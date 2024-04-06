@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class InitTimeButton extends StatelessWidget {
 
-  VoidCallback ontap;
+  final VoidCallback ontap;
   InitTimeButton({
     required this.ontap,
     super.key,

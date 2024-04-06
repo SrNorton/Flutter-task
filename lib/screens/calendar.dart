@@ -1,15 +1,15 @@
 
 import 'dart:math';
 
-import 'package:daily_task/components/editHours.dart';
-import 'package:daily_task/components/editMinutes.dart';
-import 'package:daily_task/constants/constants.dart';
-import 'package:daily_task/database/dbRepository.dart';
-import 'package:daily_task/manager/timeManager.dart';
-import 'package:daily_task/models/meeting.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:task_app/components/editHours.dart';
+import 'package:task_app/components/editMinutes.dart';
+import 'package:task_app/constants/constants.dart';
+import 'package:task_app/database/dbRepository.dart';
+import 'package:task_app/manager/timeManager.dart';
+import 'package:task_app/models/meeting.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({super.key});
