@@ -39,8 +39,9 @@ class __PageManagerStateState extends State<PageManagerState> {
       body: PageView(
         controller: pc,
         children: [
-          HomePage(),
+           HomePage(),
           Calendar(),
+         
         ],
         onPageChanged: setPage,
       ),

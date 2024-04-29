@@ -2,41 +2,38 @@
 
 
 
-import 'dart:ffi';
+
+
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import 'package:task_app/components/barchart.dart';
-import 'package:task_app/components/cardTasks.dart';
+import 'package:task_app/components/cardTasksShopping.dart';
+
+import 'package:task_app/components/profileImage.dart';
+import 'package:task_app/components/profileName.dart';
 import 'package:task_app/constants/constants.dart';
-import 'package:task_app/database/dbRepository.dart';
+
 import 'package:task_app/screens/dashPage.dart';
-import 'package:task_app/screens/editProfile.dart';
-import 'package:task_app/screens/shoppingListScreen.dart';
-import 'package:task_app/screens/timerStudyScreen.dart';
+
 
 class HomePage extends StatelessWidget {
    HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    context.read<DbRepository>().readStudydata();
+   
+   
 
 
-    var listTotal = context.watch<DbRepository>().listShopping;
-    var listShoppingDone = listTotal.where((e) => e['status'] == 'true').toList();
+ 
+
+ 
 
 
-  double percentage (){
-    var total = listTotal.length;
-    var percent = listShoppingDone.length * 100/ total;
-    var result = percent/100;
-    
-    return total == 0 ? 0 : result;
-  }
+  
 
 
-  var formated = percentage().toStringAsFixed(2);
 
 
 
@@ -68,7 +65,10 @@ class HomePage extends StatelessWidget {
                            
                           )));
                       },
-                      child: Container(
+
+                      
+                      child:
+                       Container(
                         child: Image.asset("assets/images/dashicon.png",
                         height: 30,
                         width: 30,
@@ -84,46 +84,13 @@ class HomePage extends StatelessWidget {
           SizedBox(height: 40,),
          Padding(
            padding: const EdgeInsets.only(left: 25),
-           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-             children: [
-               CircleAvatar(
-                radius: 35,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.asset("assets/images/avatar.png",
-                  fit: BoxFit.fitWidth,
-                  // fit: BoxFit.cover,
-                  ),
-                ),
-               ),
-             ],
-           ),
+           child: ProfileImage(),
          ),
         SizedBox(height: 20,),
         Padding(
                      padding: const EdgeInsets.only(left: 25),
 
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("OLá,\nAline",
-               style: TextStyle(
-                
-              height: 1,
-                            color: Colors.white,
-                            fontSize: 45,
-                            fontWeight: FontWeight.w800,
-                            fontFamily: "TitilliumWeb",
-                          ),
-              ),
-              IconButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => EditProfile()));
-              }, icon: Icon(Icons.edit,
-              color: Colors.grey,
-              ))
-            ],
-          ),
+          child: ProfileName(),
         ),
          
         //chart
@@ -148,17 +115,12 @@ class HomePage extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              CardTask(title: 'Estudo', progress: 0.5, function: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> TimerStudyScreen()));
+              // CardTask(title: 'Estudo', progress: 0.5, function: (){
+              //   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> TimerStudyScreen()));
 
-              }
+              // }
               
-                // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> TimerStudyScreen()));
-            ),
-              CardTask(title: 'Lista de Compras', progress: double.parse(formated), function: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ShoppingListScreen()));
-
-              },),
+            CardTaskShopping(),
             ],
           ),
         ),
@@ -191,4 +153,6 @@ class HomePage extends StatelessWidget {
     
   }
 }
+
+
 

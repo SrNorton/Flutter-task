@@ -49,7 +49,7 @@ class DB {
     await db.execute(_payments);
    
     await db.execute(_shopping);
-
+    await db.execute(_profile);
   
   }
 
@@ -106,6 +106,13 @@ String get _shopping =>'''
   );
 ''';
 
+String get _profile =>'''
+  CREATE TABLE profile(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    image BLOB NOT NULL
+  );
+''';
 
 
 // Future  setDailyTask({String? category, description, status}) async {

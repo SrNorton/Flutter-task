@@ -116,10 +116,24 @@ class DbRepository extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future setProfile({name, image}) async {
+    final db = await DB.instance.database;
+
+     await db.insert('profile', {
+      'name' : name,
+      'image' : image
+    });
+    
+    notifyListeners();
+    return;
+  }
+
 
   //Lists
 
   List listTimeStudy = [];
+
+  List listProfile = [];
 
 
   List listTileBuilder = [];
@@ -129,13 +143,24 @@ class DbRepository extends ChangeNotifier {
   List listCommitment = [];
   
   List listShopping = [];
-  
+
+
+  //read
   Future readStudydata () async {
     final db = await DB.instance.database;
     final allStudydata = await db.query('studies');
     listTimeStudy = allStudydata;
     notifyListeners();
     return;
+  }
+
+  Future readProfile() async {
+    final db = await DB.instance.database;
+
+    final profile = await db.query('profile');
+    listProfile = profile;
+    print('este é o profile $listProfile');
+    notifyListeners();
   }
  
 
@@ -175,10 +200,19 @@ class DbRepository extends ChangeNotifier {
     return;
 
   }
-  //deletar item, lista de compras
+
+
+  //delete
   Future deleteItemShopping({id}) async {
     final db = await DB.instance.database;
      await db.delete('shopping', where: 'id=?', whereArgs: [id] );
+    notifyListeners();
+    return;
+  }
+
+  Future deleteProfile() async {
+    final db = await DB.instance.database;
+    await db.delete('profile');
     notifyListeners();
     return;
   }

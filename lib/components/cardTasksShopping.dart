@@ -4,29 +4,35 @@ import 'package:progresso/progresso.dart';
 import 'package:provider/provider.dart';
 import 'package:task_app/constants/constants.dart';
 import 'package:task_app/database/dbRepository.dart';
+import 'package:task_app/screens/shoppingListScreen.dart';
 
-class CardTask extends StatefulWidget {
-  final String title;
-  final double progress;
-  final VoidCallback function;
+class CardTaskShopping extends StatelessWidget {
   
-   CardTask({
-    required this.title, required this.progress, required this.function
-  });
-
-  @override
-  State<CardTask> createState() => _CardTaskState();
-}
-
-class _CardTaskState extends State<CardTask> {
+  
+   CardTaskShopping(
+    
+  );
 
   final mykey = GlobalKey<FormState>();
 
-
-
   @override
   Widget build(BuildContext context) {
-         context.read<DbRepository>().readListShopping();
+
+           var listTotal = context.watch<DbRepository>().listShopping;
+    var itemShoppingDone = listTotal.where((e) => e['status'] == 'true').toList();
+
+
+  double percentage (){
+    var total = listTotal.length;
+    var percent = itemShoppingDone.length * 100/ total;
+    var result = percent/100;
+    
+    return total == 0 ? 0 : result;
+  }
+
+
+  var formated = percentage().toStringAsFixed(2);
+
     
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8, top: 15, bottom: 15),
@@ -48,7 +54,7 @@ class _CardTaskState extends State<CardTask> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(widget.title,
+                  Text('Lista de Compras',
                    style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -58,7 +64,9 @@ class _CardTaskState extends State<CardTask> {
                   
                   ),
                   IconButton(
-                    onPressed:  widget.function,
+                    onPressed:  (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ShoppingListScreen()));
+                    },
                     
                   
                   icon: Icon(Icons.arrow_circle_right_outlined,
@@ -83,7 +91,7 @@ class _CardTaskState extends State<CardTask> {
                           fontFamily: "TitilliumWeb",
                         ),
                       ),
-                      Text((widget.progress * 100).toString()+"%",
+                      Text((double.parse(formated) * 100).toString()+"%",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -100,7 +108,7 @@ class _CardTaskState extends State<CardTask> {
                               padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 35),
                               child: Progresso(
                                           
-                                          progress: widget.progress, 
+                                          progress: double.parse(formated), 
                                           progressStrokeCap: StrokeCap.round,
                                           backgroundStrokeCap: StrokeCap.round,
                                           progressColor: Kgreenprogress,

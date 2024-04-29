@@ -1,11 +1,14 @@
 import 'dart:io';
 
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:task_app/components/genericButton.dart';
-import 'package:task_app/components/nameTextField.dart';
+
 import 'package:task_app/constants/constants.dart';
+import 'package:task_app/database/dbRepository.dart';
 
 
 
@@ -17,6 +20,9 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _textController = TextEditingController();
 
 final imagePicker = ImagePicker();
 File? imageFile;
@@ -31,6 +37,11 @@ pick(ImageSource source) async {
   }
 }
 
+Uint8List convertImageToBytes(File image) {
+  final file = File(image.path);
+  return file.readAsBytesSync();
+}
+
 
 
 
@@ -38,6 +49,19 @@ pick(ImageSource source) async {
 
   @override
   Widget build(BuildContext context) {
+
+
+       var data = context.read<DbRepository>();
+
+
+    
+
+      
+    
+
+
+       
+
     return Scaffold(
       backgroundColor: Kbackground,
       appBar: AppBar(
@@ -91,7 +115,31 @@ color: Colors.white
                  padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
                  child: Column(
                    children: [
-                     NameTextField(),
+                            Form(
+                            key: _formKey,
+                            child: TextFormField( 
+                              validator: (value){
+                                if(value == null || value.isEmpty){return 'Insert your Name';}
+                                if(value.length > 8){return 'O nome deve ter 8 caracteres';}
+                                
+                              return null;
+                              },
+                              controller: _textController,
+                                decoration: InputDecoration(
+                                  labelText: 'Name',
+                                  fillColor: Colors.blue,
+                                  hintText: 'Your first name',
+                                  border: OutlineInputBorder(
+                                    
+                                    borderRadius: BorderRadius.circular(20)
+                                  )
+                                ),
+                            ),
+                          ),
+
+
+
+
                      SizedBox(height: 30,),
                      GenericButton(title: 'Câmera', icon: Icons.camera_alt, function: (){pick(ImageSource.camera);},),
                      SizedBox(height: 30,),
@@ -101,7 +149,33 @@ color: Colors.white
                        imageFile = null;
                      });},),
                      SizedBox(height: 30,),
-                     GenericButton(title: 'Salvar', icon: Icons.save, function: (){}, color: Colors.blue,)
+                     
+                     
+                     
+                     GenericButton(title: 'Salvar', icon: Icons.save, function: (){
+                     
+                      
+                       if(_formKey.currentState!.validate()){
+                           
+                      if(imageFile != null){
+                        var image = convertImageToBytes(imageFile!);
+
+                        data.setProfile(
+                          name: _textController.text,
+                          image: image,
+                        );
+
+                        data.readProfile();
+
+                      } 
+
+
+                       }
+
+
+                     }, 
+                     color: Colors.blue,
+                     )
 
                      
                      
