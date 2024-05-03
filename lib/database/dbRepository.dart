@@ -210,6 +210,13 @@ class DbRepository extends ChangeNotifier {
     return;
   }
 
+  Future deleCommitment({id}) async {
+    final db = await DB.instance.database;
+    await db.delete('commitment', where: 'id=?', whereArgs: [id]);
+    notifyListeners();
+    return;
+  }
+
   Future deleteProfile() async {
     final db = await DB.instance.database;
     await db.delete('profile');
@@ -247,7 +254,7 @@ class DbRepository extends ChangeNotifier {
   //update shopping list 
   Future updateListShopping({status, id}) async {
     final db = await DB.instance.database;
-    int updateList = await db.rawUpdate(
+    await db.rawUpdate(
       'UPDATE shopping SET status= ? WHERE id=?', [status, id]
     );
     notifyListeners();

@@ -37,6 +37,7 @@ class __PageManagerStateState extends State<PageManagerState> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: PageView(
+        physics: NeverScrollableScrollPhysics(),
         controller: pc,
         children: [
            HomePage(),

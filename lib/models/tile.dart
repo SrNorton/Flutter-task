@@ -17,7 +17,7 @@ class Tile {
   }
  @override
   String toString() {
-    // TODO: implement toString
+   
     return "minha cor $image e minha descrição é $descriptionTask";
   }
 

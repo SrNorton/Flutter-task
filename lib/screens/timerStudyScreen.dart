@@ -3,6 +3,8 @@
  
 
 
+
+
 import 'package:flutter/material.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +25,8 @@ class _TimerStudyScreenState extends State<TimerStudyScreen> {
 
   
 
+  
+
 
 
   @override
@@ -31,8 +35,10 @@ class _TimerStudyScreenState extends State<TimerStudyScreen> {
        var data = context.read<DbRepository>();
 
 
-      final DateTime weekday = DateTime.now();
+      final DateTime weekDay = DateTime.now();
       int timeProvider = context.watch<FocusTimeManager>().timefocus;
+       
+
       int timer = timeProvider * 60;
       var dayName;
       
@@ -41,7 +47,7 @@ class _TimerStudyScreenState extends State<TimerStudyScreen> {
 
       void setTime(){
       
-          switch (weekday.weekday) {
+          switch (weekDay.weekday) {
       case  1:
      dayName =  'Mon';
         
@@ -73,6 +79,7 @@ class _TimerStudyScreenState extends State<TimerStudyScreen> {
       dayName = 'Error Day';
     }
 
+
     if(dayName == 'Mon') 
     {
       data.deleteStudieDb();
@@ -83,18 +90,13 @@ class _TimerStudyScreenState extends State<TimerStudyScreen> {
       weekday: dayName
       );
         
-        
+      data.readStudydata;  
           
         setState(() {
-        // timer = timeProvider;
+        
         });
         print('Minutos selecionados $timeProvider');
         print(dayName);
-        // Navigator.of(context).pushReplacement(MaterialPageRoute(
-          
-        //   builder: (BuildContext context){
-        //   return TimerStudyScreen();
-        // }));
        
 
       }
@@ -176,7 +178,9 @@ color: Colors.white
             ),
             ),
 
-             FocusTimeController(),
+             FocusTimeController(
+             
+             ),
 
            const SizedBox(height: 35,),
 

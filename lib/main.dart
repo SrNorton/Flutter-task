@@ -33,9 +33,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<DbRepository>().readCommitment();
     
-    context.read<DbRepository>().readStudydata();
   context.read<DbRepository>().readProfile();
          context.read<DbRepository>().readListShopping();
+    context.read<DbRepository>().readStudydata();
+
 
 
    

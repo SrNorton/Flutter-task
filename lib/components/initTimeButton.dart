@@ -23,7 +23,7 @@ class InitTimeButton extends StatelessWidget {
               
             ),
             child: Center(
-              child: Text('Iniciar',
+              child: Text('Salvar',
               
               style: TextStyle(
                 fontSize: 22,

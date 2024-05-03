@@ -62,6 +62,7 @@ return;
   @override
   Widget build(BuildContext context) {
 
+
     var listFilter = context.watch<DbRepository>().listTimeStudy;
     var monValue = listFilter.where((e) => e['weekday'] == 'Mon').toList();
     var tueValue = listFilter.where((e) => e['weekday'] == 'Tue').toList();
@@ -386,49 +387,49 @@ setValue(day1, day2, day3, day4, day5, day6, day7);
           case 0:
             return makeGroupData(
               0,
-              Random().nextInt(15).toDouble() + 6,
+              Random().nextInt(15).toDouble() + 7,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 1:
             return makeGroupData(
               1,
-              Random().nextInt(15).toDouble() + 6,
+              Random().nextInt(15).toDouble() + 7,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 2:
             return makeGroupData(
               2,
-              Random().nextInt(15).toDouble() + 6,
+              Random().nextInt(15).toDouble() + 7,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 3:
             return makeGroupData(
               3,
-              Random().nextInt(15).toDouble() + 6,
+              Random().nextInt(15).toDouble() + 7,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 4:
             return makeGroupData(
               4,
-              Random().nextInt(15).toDouble() + 6,
+              Random().nextInt(15).toDouble() + 7,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 5:
             return makeGroupData(
               5,
-              Random().nextInt(15).toDouble() + 6,
+              Random().nextInt(15).toDouble() + 7,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 6:
             return makeGroupData(
               6,
-              Random().nextInt(15).toDouble() + 6,
+              Random().nextInt(15).toDouble() + 7,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );

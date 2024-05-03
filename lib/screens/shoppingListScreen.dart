@@ -75,14 +75,8 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
             
                         return 
                         
-                        //  Container(
-                        //   height: 200,
-                        //   width: 300,
-                        //   child: Row(
-                        //     children: [
-                        //       Center(child: StatusShoppingList(idItem: 1, ))
-                        //     ],),
-                        // );
+                     
+                     
                         
                         TileShoppingList(
                           id: dbrepository.listShopping[index]['id'],

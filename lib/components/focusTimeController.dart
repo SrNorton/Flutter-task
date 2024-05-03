@@ -6,7 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:task_app/manager/focustTimeManager.dart';
 
 class FocusTimeController extends StatelessWidget {
-  
+
+ 
 
   
 
@@ -22,7 +23,10 @@ class FocusTimeController extends StatelessWidget {
                      color: Colors.red,
                      ),
                      onPressed: () {
+                       
                        context.read<FocusTimeManager>().removeTimer();
+
+                      
                      }) : Container(),
                  Text(timer.toString(),
                  style: TextStyle(
@@ -37,7 +41,12 @@ class FocusTimeController extends StatelessWidget {
                      
                      ),
                      onPressed: () {
+                       
+                       
                        context.read<FocusTimeManager>().addTimer();
+
+                     
+
                        
                      }),
      ],

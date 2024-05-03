@@ -1,39 +1,41 @@
-
 import 'package:flutter/material.dart';
 import 'package:progresso/progresso.dart';
 import 'package:provider/provider.dart';
 import 'package:task_app/constants/constants.dart';
 import 'package:task_app/database/dbRepository.dart';
-import 'package:task_app/screens/shoppingListScreen.dart';
+import 'package:task_app/screens/timerStudyScreen.dart';
 
-class CardTaskShopping extends StatelessWidget {
-  
-  
-   CardTaskShopping(
-    
-  );
+class CardTaskStudy extends StatefulWidget {
+  const CardTaskStudy({super.key});
 
-  final mykey = GlobalKey<FormState>();
+  @override
+  State<CardTaskStudy> createState() => _CardTaskStudyState();
+}
 
+class _CardTaskStudyState extends State<CardTaskStudy> {
   @override
   Widget build(BuildContext context) {
 
-           var listTotal = context.watch<DbRepository>().listShopping;
-    var itemShoppingDone = listTotal.where((e) => e['status'] == 'true').toList();
+
+    var listTotal = context.watch<DbRepository>().listTimeStudy;
 
 
-  double percentage (){
+    double percentageWeekStudy(){
     var total = listTotal.length;
-    var percent = itemShoppingDone.length * 100/ total;
-    var result = percent/100;
     
-    return total == 0 ? 0 : result;
-  }
+
+    var result = total * 14.28;
+
+   return  result/100;
 
 
-  var formated = percentage().toStringAsFixed(2);
+    }
 
-    
+
+var formated = percentageWeekStudy().toStringAsFixed(2);
+
+
+
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8, top: 15, bottom: 15),
       child: Container(
@@ -54,7 +56,7 @@ class CardTaskShopping extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Lista de Compras',
+                  Text('Tempo de Estudo',
                    style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -65,7 +67,7 @@ class CardTaskShopping extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed:  (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> ShoppingListScreen()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> TimerStudyScreen()));
                     },
                     
                   
@@ -83,8 +85,9 @@ class CardTaskShopping extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      
-                      Text((double.parse(formated) * 100).toString()+"%",
+                     
+                   
+                    Text((double.parse(formated) * 100).toStringAsFixed(2)+"%",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -92,10 +95,11 @@ class CardTaskShopping extends StatelessWidget {
                           fontFamily: "TitilliumWeb",
                         ),
                       ),
-            
+
                     ],
                   ),
-                  //BARRA DE PROGRESSSO
+
+                    //BARRA DE PROGRESSSO
       
                             Padding(
                               padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 35),
@@ -107,6 +111,7 @@ class CardTaskShopping extends StatelessWidget {
                                           progressColor: Kgreenprogress,
                                       ),
                             ),
+                
                 ],
               ),
             ),

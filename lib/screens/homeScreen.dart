@@ -8,6 +8,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:task_app/components/barchart.dart';
+import 'package:task_app/components/cardTaskCommitment.dart';
+import 'package:task_app/components/cardTaskStudy.dart';
 import 'package:task_app/components/cardTasksShopping.dart';
 
 import 'package:task_app/components/profileImage.dart';
@@ -17,9 +19,14 @@ import 'package:task_app/constants/constants.dart';
 import 'package:task_app/screens/dashPage.dart';
 
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
    HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
    
@@ -103,8 +110,7 @@ class HomePage extends StatelessWidget {
 
         
         
-    // SizedBox(height: 10,),
-
+   
 
     //CARD TAREFAS WIDGET
 
@@ -115,28 +121,19 @@ class HomePage extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              // CardTask(title: 'Estudo', progress: 0.5, function: (){
-              //   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> TimerStudyScreen()));
-
-              // }
+             
+             CardTaskShopping(),
+             CardTaskStudy(),
+             CardTaskCommitment()
               
-            CardTaskShopping(),
+            
             ],
           ),
         ),
         
         
         
-        // ListView.builder(
-        //   scrollDirection: Axis.horizontal,
-        //   itemCount: cardlist.length,
-        //   itemBuilder: (context, index) {
-        //   return CardTask(title: cardlist[index].title, progress: cardlist[index].progress,
-        //   function: ()=> print('card'),
-           
-          
-        //   );
-        // }),
+       
       ),
     )
 
