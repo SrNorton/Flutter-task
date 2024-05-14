@@ -6,6 +6,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:task_app/components/barchart.dart';
 import 'package:task_app/components/cardTaskCommitment.dart';
@@ -15,6 +16,7 @@ import 'package:task_app/components/cardTasksShopping.dart';
 import 'package:task_app/components/profileImage.dart';
 import 'package:task_app/components/profileName.dart';
 import 'package:task_app/constants/constants.dart';
+import 'package:task_app/database/dbRepository.dart';
 
 import 'package:task_app/screens/dashPage.dart';
 
@@ -33,7 +35,6 @@ class _HomePageState extends State<HomePage> {
    
 
 
- 
 
  
 

@@ -4,8 +4,10 @@ import 'dart:math';
 
 
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task_app/components/buttonClearBarchart.dart';
 import 'package:task_app/database/dbRepository.dart';
 
 class BarChartSample1 extends StatefulWidget {
@@ -84,7 +86,12 @@ return;
     
 setValue(day1, day2, day3, day4, day5, day6, day7);
 
-    // print('esta é a lista $day1');
+    clearBarChart(){
+      setState(() {
+      context.read<DbRepository>().deleteStudieDb();
+        
+      });
+    }
 
 
 
@@ -96,7 +103,7 @@ setValue(day1, day2, day3, day4, day5, day6, day7);
           Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const Text(
                   'Progress',
@@ -109,14 +116,9 @@ setValue(day1, day2, day3, day4, day5, day6, day7);
                 const SizedBox(
                   height: 4,
                 ),
-                Text(
-                  'Study focus time',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+               ButtonClearBarChart(
+                function: clearBarChart,
+               ),
                 const SizedBox(
                   height: 38,
                 ),
@@ -451,3 +453,4 @@ setValue(day1, day2, day3, day4, day5, day6, day7);
     }
   }
 }
+
