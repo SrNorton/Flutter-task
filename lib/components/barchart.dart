@@ -11,7 +11,13 @@ import 'package:task_app/components/buttonClearBarchart.dart';
 import 'package:task_app/database/dbRepository.dart';
 
 class BarChartSample1 extends StatefulWidget {
-  BarChartSample1({super.key});
+
+  bool rebuildColor = false;
+  
+  BarChartSample1({super.key,
+  required this.rebuildColor,
+  
+  });
 
   List<Color> get availableColors => const <Color>[
         Colors.purple,
@@ -86,11 +92,15 @@ return;
     
 setValue(day1, day2, day3, day4, day5, day6, day7);
 
+
+
     clearBarChart(){
       setState(() {
       context.read<DbRepository>().deleteStudieDb();
-        
+      
       });
+      context.read<DbRepository>().readStudydata();
+      
     }
 
 
@@ -144,7 +154,7 @@ setValue(day1, day2, day3, day4, day5, day6, day7);
               child: IconButton(
                 icon: Icon(
                   isPlaying ? Icons.pause : Icons.play_arrow,
-                  color: Colors.green,
+                  color: widget.rebuildColor ? Colors.green : Colors.blue,
                 ),
                 onPressed: () {
                   setState(() {

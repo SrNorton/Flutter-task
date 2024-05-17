@@ -12,6 +12,7 @@ import 'package:task_app/components/focusTimeController.dart';
 import 'package:task_app/components/initTimeButton.dart';
 import 'package:task_app/database/dbRepository.dart';
 import 'package:task_app/manager/focustTimeManager.dart';
+import 'package:task_app/screens/homeScreen.dart';
 
 import '../constants/constants.dart';
 
@@ -85,19 +86,21 @@ class _TimerStudyScreenState extends State<TimerStudyScreen> {
       data.deleteStudieDb();
     }
 
-    data.setStudyTime(
-      time: timeProvider,
-      weekday: dayName
-      );
+   
         
-      data.readStudydata;  
+      
           
         setState(() {
-        
+
+         data.setStudyTime(
+      time: timeProvider,
+      weekday: dayName
+
+      );
         });
         print('Minutos selecionados $timeProvider');
         print(dayName);
-       
+       data.readStudydata;  
 
       }
       
@@ -106,6 +109,19 @@ class _TimerStudyScreenState extends State<TimerStudyScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(
+          padding: EdgeInsets.all(2),
+          child: IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> HomePage()));
+                      context.read<DbRepository>().readStudydata();
+
+            },
+            ),
+        ),
+          
+        
         iconTheme: IconThemeData(
 color: Colors.white
         ),

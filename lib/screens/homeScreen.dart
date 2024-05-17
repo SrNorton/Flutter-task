@@ -29,13 +29,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
+
+   int data = 0;
+
+   data = context.watch<DbRepository>().listTimeStudy.length;
+
+   bool isEven = data % 2 == 0 ? true : false;
    
-   
-
-
-
+ 
+ 
  
 
 
@@ -107,7 +117,7 @@ class _HomePageState extends State<HomePage> {
         SizedBox(
           height: 300,
           width: MediaQuery.of(context).size.width,
-          child: BarChartSample1()),
+          child: BarChartSample1(rebuildColor: isEven,)),
 
         
         
